@@ -20,3 +20,8 @@ export interface IRecord {
   member: string;
   temperature?: number;
 }
+
+export interface IPeoples {
+  group: string;
+  name: string;
+}
