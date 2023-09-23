@@ -9,7 +9,7 @@ export const HistoryGrid = () => {
   useEffect(() => {
     GET('/api/v1/user/storage')
       .then((res) => {
-        setData(res.data);
+        setData(res);
       })
       .catch(() => {
         alert('데이터를 불러오는 데 실패했습니다.');
@@ -17,8 +17,9 @@ export const HistoryGrid = () => {
       });
   }, []);
 
-  // 빈 경우에 대한 처리 안해둠
-
+  if (!data) {
+    return <div>데이터가 없습니다.</div>;
+  }
   return (
     <CollectBookGridWrapper>
       {data.map((collect: HistoryCollectProps) => {
