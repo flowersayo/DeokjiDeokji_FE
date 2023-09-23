@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Body1_1, Body2_3 } from 'styles/font';
 import { IPlace } from 'utils/interface';
+import { Hashtag } from './Hashtag';
 
 export const LocationInfo = ({ focused }: { focused: IPlace | null }) => {
   return (
@@ -10,6 +11,9 @@ export const LocationInfo = ({ focused }: { focused: IPlace | null }) => {
         <Body1_1>{focused?.name}</Body1_1>
         <Body2_3>{focused?.address}</Body2_3>
       </LocationInfoTop>
+      <div>
+        <Hashtag category={`${focused?.category}`} />
+      </div>
     </LocationInfoContainer>
   );
 };
