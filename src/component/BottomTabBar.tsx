@@ -84,7 +84,7 @@ const NavBox = styled.div`
   bottom: 0px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-
+  z-index: 2;
   padding-bottom: 21px;
   /* navigatonbar */
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);

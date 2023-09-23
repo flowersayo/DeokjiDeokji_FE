@@ -11,6 +11,7 @@ const MainRouter = () => {
       <Router>
         {/*헤더*/}
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/feed" element={<FeedPage />} />
           <Route path="/collect" element={<CollectBookPage />} />
@@ -25,7 +26,6 @@ const MainRouter = () => {
 const Container = styled.div`
   display: flex;
   height: calc(var(--vh, 1vh) * 100);
-  max-width: 495px; // 모바일 최대
   justify-content: center;
   margin: auto;
 `;
