@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      // "@/*": ["src/*"]
+      "src/*": ["src/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -23,5 +23,5 @@
     "noImplicitThis": true,
     "strictNullChecks": true
   },
-  "include": ["src"]
+  "include": ["src", "custom.d.ts"]
 }
