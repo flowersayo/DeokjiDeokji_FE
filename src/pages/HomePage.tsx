@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { styled } from 'styled-components';
+import CreateRecordModal from 'component/modals/CreateRecordModal';
+import CreateRecordBtn from 'component/home/CreateRecordBtn';
 
 declare global {
   interface Window {
@@ -8,6 +11,11 @@ declare global {
   }
 }
 const HomePage = () => {
+  const [isCreateRecordModalOpen, setIsCreateRecordModalOpen] = useState(false);
+
+  const handleCreateBtnClick = () => {
+    setIsCreateRecordModalOpen(true);
+  };
   const locations = [
     {
       title: '카카오',
@@ -44,10 +52,14 @@ const HomePage = () => {
   ];
 
   return (
-    <>
+    <HomePageLayout>
+      <CreateRecordModal
+        isOpen={isCreateRecordModalOpen}
+        setOpen={setIsCreateRecordModalOpen}
+      />
       <Map
         center={{ lat: 33.5563, lng: 126.79581 }}
-        style={{ width: '100vw', height: '100vh' }}
+        style={{ width: '100%', height: '100%' }}
       >
         {locations.map((loc, idx) => (
           <MapMarker
@@ -61,13 +73,15 @@ const HomePage = () => {
           />
         ))}
       </Map>
-    </>
+      <CreateRecordBtn onClick={handleCreateBtnClick} />
+    </HomePageLayout>
   );
 };
 
 const HomePageLayout = styled.div`
   width: 100%;
   height: 100%;
+  position: relative;
 `;
 
 export default HomePage;
