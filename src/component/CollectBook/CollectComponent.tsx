@@ -13,9 +13,9 @@ export const CollectLayout = styled.div<{ tag: DataType }>`
   border: 1.5px solid ${({ theme }) => theme.colors.black};
   background-color: ${({ tag }) => {
     switch (tag) {
-      case 'RESTAURANT':
+      case 'Restaurant':
         return ({ theme }) => theme.colors.purple;
-      case 'CAFE':
+      case 'Cafe':
         return ({ theme }) => theme.colors.green;
       default:
         // BIRTHDAY_CAFE
@@ -37,4 +37,11 @@ export const CollectArtist = styled(Body2_3)`
   border: 1px solid ${({ theme }) => theme.colors.black};
   background: ${({ theme }) => theme.colors.black};
   color: ${({ theme }) => theme.colors.white};
+`;
+
+export const CollectBookGridWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 1.79rem;
+  grid-row-gap: 1.34rem;
 `;

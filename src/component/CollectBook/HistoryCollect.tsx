@@ -5,7 +5,8 @@ import { DataType } from 'utils/interface';
 import { CollectLayout, CollectName, CollectArtist } from './CollectComponent';
 import temperature_icon from 'assets/icons/fluent_temperature.svg';
 
-type HistoryCollectProps = {
+export type HistoryCollectProps = {
+  id?: number;
   tag: DataType;
   name: string;
   artist: string;
@@ -21,7 +22,7 @@ export const HistoryCollect = ({
   return (
     <CollectLayout tag={tag}>
       <CollectName>{name}</CollectName>
-      <CollectArtist>{artist}</CollectArtist>
+      <CollectArtist>{'#' + artist}</CollectArtist>
       <CollectTemperature>
         <Temperature src={temperature_icon} />
         <Body2_3>{temperature + '°'}</Body2_3>

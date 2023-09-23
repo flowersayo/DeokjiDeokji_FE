@@ -1,4 +1,4 @@
-export type DataType = 'RESTAURANT' | 'CAFE' | 'BIRTHDAY_CAFE';
+export type DataType = 'Restaurant' | 'Cafe' | 'BirthCafe';
 
 export interface IUser {
   name: string;

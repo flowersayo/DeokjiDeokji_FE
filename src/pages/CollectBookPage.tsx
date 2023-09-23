@@ -1,6 +1,7 @@
 import CollectbookUser from 'component/CollectBook/CollectbookUser';
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
+import { HistoryGrid } from 'component/CollectBook/HistoryGrid';
 
 const CollectBookPage = () => {
   const [mode, setMode] = useState<'HISTORY' | 'FUTURE'>('HISTORY');
@@ -25,7 +26,7 @@ const CollectBookPage = () => {
           예정 보관함
         </ToggleBtn>
       </ToggleWrapper>
-      {/* TODO: 콜렉트북 그리드 */}
+      {mode === 'HISTORY' ? <HistoryGrid /> : <div>예정 보관함</div>}
     </CollectBookPageLayout>
   );
 };
@@ -33,10 +34,15 @@ const CollectBookPage = () => {
 const CollectBookPageLayout = styled.div`
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  padding: 3.2rem 2.4rem;
 `;
 
 const ToggleWrapper = styled.div`
-  width: 32.7rem;
+  width: 100%;
+
   height: 4.8rem;
   border-radius: 1.2rem;
   background: ${({ theme }) => theme.colors.gray01};
