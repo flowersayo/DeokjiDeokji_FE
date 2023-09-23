@@ -16,10 +16,18 @@ export const LocationInfo = ({
 }) => {
   return (
     <LocationInfoContainer position={position}>
-      <LocationInfoTop>
-        <Body1_1>{focused?.name}</Body1_1>
-        <Body2_3>{focused?.address}</Body2_3>
-      </LocationInfoTop>
+      <div style={{ position: 'absolute', left: 20, top: 15 }}>
+        <img
+          src={focused?.img}
+          style={{ width: '60px', height: '60px', borderRadius: '10px' }}
+        />
+      </div>
+      <div>
+        <LocationInfoTop>
+          <Body1_1>{focused?.name}</Body1_1>
+          <Body2_3>{focused?.address}</Body2_3>
+        </LocationInfoTop>
+      </div>
     </LocationInfoContainer>
   );
 };
@@ -39,7 +47,7 @@ const LocationInfoContainer = styled.div<IPositions>`
     props.position === 'relative'
       ? css`
           position: relative;
-          z-index: 2;
+          /* z-index: 2; */
         `
       : css`
           position: absolute;

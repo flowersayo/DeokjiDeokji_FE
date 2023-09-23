@@ -30,7 +30,7 @@ const HomePage = () => {
         setOpen={setIsCreateRecordModalOpen}
       />
       <Map
-        center={{ lat: 33.450705, lng: 126.570677 }}
+        center={{ lat: 37.530025, lng: 126.964773 }}
         style={{ width: '100%', height: '100%' }}
       >
         {places.map((loc) => {
@@ -45,7 +45,7 @@ const HomePage = () => {
                 position={latlng}
                 image={{
                   src: `/assets/svg/${loc.category}.svg`,
-                  size: { width: 24, height: 35 },
+                  size: { width: 35, height: 35 },
                 }}
                 title={loc.name}
                 onClick={() => {
