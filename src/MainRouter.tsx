@@ -5,6 +5,8 @@ import HomePage from './pages/HomePage';
 import FeedPage from 'pages/FeedPage';
 import CollectBookPage from 'pages/CollectBookPage';
 import BottomTabBar from 'component/BottomTabBar';
+import LoginPage from 'pages/LoginPage';
+import LoginHandler from 'pages/LoginHandler';
 const MainRouter = () => {
   return (
     <Container>
@@ -15,8 +17,10 @@ const MainRouter = () => {
           <Route path="/home" element={<HomePage />} />
           <Route path="/feed" element={<FeedPage />} />
           <Route path="/collect" element={<CollectBookPage />} />
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/api/v1/oauth2/kakao" element={<LoginHandler />} />
         </Routes>
-
         <BottomTabBar />
       </Router>
     </Container>
