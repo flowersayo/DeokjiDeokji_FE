@@ -28,3 +28,8 @@ export interface IPlace {
   longitude: number;
   category: string;
 }
+
+export interface IPeoples {
+  group: string;
+  name: string;
+}
