@@ -1,3 +1,10 @@
+export type DataType = 'Restaurant' | 'Cafe' | 'BirthCafe';
+
+export interface IUser {
+  name: string;
+  email: string;
+  birthday: string;
+}
 export interface IGroup {
   name: string;
   members: string[];
@@ -9,6 +16,7 @@ export interface IPlace {
   address: string;
   latitude: number;
   longitude: number;
+  img?: string;
   type?: string;
 }
 
@@ -19,3 +27,8 @@ export interface IRecord {
   member: string;
   temperature?: number;
 }
+
+// export interface IPeoples {
+//   group: string;
+//   name: string;
+// }
