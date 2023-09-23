@@ -5,3 +5,12 @@ export interface IUser {
   email: string;
   birth: string;
 }
+
+export interface IPlace {
+  id: number;
+  name: string;
+  address: string;
+  latitude: number;
+  longitude: number;
+  category: string;
+}
