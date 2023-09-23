@@ -16,25 +16,12 @@ const BottomSheet = ({
   const ref = useRef<SheetRef>();
   const snapTo = (i: number) => ref.current?.snapTo(i);
 
-  const stepToSnap: { [key: number]: number } = {
-    0: 3,
-    1: 3,
-    2: 1,
-    3: 2,
-    4: 0,
-    5: 4,
-  };
-  useEffect(() => {
-    () => snapTo(stepToSnap[step]);
-  }, [step]);
-
   return (
     <Sheet
       ref={ref}
       isOpen={isOpen}
       onClose={() => setOpen(false)}
       snapPoints={[643, 532, 385, 375, 368]}
-      initialSnap={step}
       detent="content-height"
       onSnap={(snapIndex) =>
         console.log('> Current snap point index:', snapIndex)
