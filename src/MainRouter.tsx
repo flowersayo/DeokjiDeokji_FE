@@ -5,17 +5,22 @@ import HomePage from './pages/HomePage';
 import FeedPage from 'pages/FeedPage';
 import CollectBookPage from 'pages/CollectBookPage';
 import BottomTabBar from 'component/BottomTabBar';
+import LoginPage from 'pages/LoginPage';
+import LoginHandler from 'pages/LoginHandler';
 const MainRouter = () => {
   return (
     <Container>
       <Router>
         {/*헤더*/}
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/feed" element={<FeedPage />} />
           <Route path="/collect" element={<CollectBookPage />} />
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/api/v1/oauth2/kakao" element={<LoginHandler />} />
         </Routes>
-
         <BottomTabBar />
       </Router>
     </Container>
@@ -25,7 +30,6 @@ const MainRouter = () => {
 const Container = styled.div`
   display: flex;
   height: calc(var(--vh, 1vh) * 100);
-  max-width: 495px; // 모바일 최대
   justify-content: center;
   margin: auto;
 `;

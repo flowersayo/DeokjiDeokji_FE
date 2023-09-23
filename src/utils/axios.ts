@@ -1,22 +1,18 @@
-import React from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
+import { API_URL } from 'utils/constants';
 
-// const getToken = () => localStorage.getItem('access_token');
+export const getToken = () => localStorage.getItem('access_token');
+export const setToken = (token: string) =>
+  localStorage.setItem('access_token', token);
+export const removeToken = () => localStorage.removeItem('access_token');
 
 const fetchWrapper = async ({ method, url, body, params }: any) => {
   const config: AxiosRequestConfig = {
-    baseURL: process.env.REACT_APP_API_URL,
-    //withCredentials: true,
-
-    /*
-    TODO 로그인 토큰 전달 방식 확정
+    baseURL: API_URL,
+    withCredentials: true,
     headers: {
-      'X-AUTH-TOKEN': getToken(),
+      Authorization: `Bearer ${getToken()}`,
     },
-    headers: {
-        Authorization: `Bearer ${getToken()}`,
-      },
-      */
     ...params,
   };
 
