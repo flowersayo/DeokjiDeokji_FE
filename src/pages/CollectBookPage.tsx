@@ -12,7 +12,7 @@ const CollectBookPage = () => {
           onClick={() => {
             setMode('HISTORY');
           }}
-          isActive={mode === 'HISTORY'}
+          isactive={mode === 'HISTORY'}
         >
           기록 보관함
         </ToggleBtn>
@@ -20,7 +20,7 @@ const CollectBookPage = () => {
           onClick={() => {
             setMode('FUTURE');
           }}
-          isActive={mode === 'FUTURE'}
+          isactive={mode === 'FUTURE'}
         >
           예정 보관함
         </ToggleBtn>
@@ -44,18 +44,18 @@ const ToggleWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const ToggleBtn = styled.button<{ isActive: boolean }>`
+const ToggleBtn = styled.button<{ isactive: boolean }>`
   width: 15.6rem;
   height: 4rem;
   margin: 0.4rem;
   box-sizing: border-box;
   border-radius: 1.2rem;
-  border: ${({ theme, isActive }) =>
-    isActive ? `1.5px solid ${theme.colors.gray03}` : 'none'};
-  background: ${({ theme, isActive }) =>
-    isActive ? theme.colors.white : 'none'};
-  color: ${({ theme, isActive }) =>
-    isActive ? theme.colors.black : theme.colors.gray03};
+  border: ${({ theme, isactive }) =>
+    isactive ? `1.5px solid ${theme.colors.gray03}` : 'none'};
+  background: ${({ theme, isactive }) =>
+    isactive ? theme.colors.white : 'none'};
+  color: ${({ theme, isactive }) =>
+    isactive ? theme.colors.black : theme.colors.gray03};
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 160%; /* 2.56rem */
