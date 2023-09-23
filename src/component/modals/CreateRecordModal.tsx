@@ -1,4 +1,6 @@
+
 import React, { useEffect, useState } from 'react';
+
 import { styled } from 'styled-components';
 import BottomSheet from 'component/BottomSheet';
 import MainBtn from 'component/MainBtn';
@@ -127,6 +129,7 @@ const CreateRecordModal = ({
   return (
     <BottomSheet isOpen={isOpen} setOpen={setOpen} step={currentStep}>
       <ModalContent>{steps[currentStep]}</ModalContent>
+
     </BottomSheet>
   );
 };

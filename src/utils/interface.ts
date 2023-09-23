@@ -19,3 +19,12 @@ export interface IRecord {
   member: string;
   temperature?: number;
 }
+
+export interface IPlace {
+  id: number;
+  name: string;
+  address: string;
+  latitude: number;
+  longitude: number;
+  category: string;
+}
