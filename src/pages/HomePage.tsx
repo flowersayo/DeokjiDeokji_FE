@@ -50,19 +50,23 @@ const HomePage = () => {
             lng: loc.longitude,
           };
           return (
-            <MapMarker
-              key={`${loc.name}-${latlng}`}
-              position={latlng}
-              image={{
-                src: `/assets/svg/${loc.type}.svg`,
-                size: { width: 24, height: 35 },
-              }}
-              title={loc.name}
-              onClick={() => {
-                setIsOpen(true);
-                setFocused(loc);
-              }}
-            />
+
+            <>
+              <MapMarker
+                key={`${loc.name}-${latlng}`}
+                position={latlng}
+                image={{
+                  src: `/assets/svg/${loc.type}.svg`,
+                  size: { width: 35, height: 35 },
+                }}
+                title={loc.name}
+                onClick={() => {
+                  setIsOpen(true);
+                  setFocused(loc);
+                }}
+              />
+            </>
+
           );
         })}
         {isOpen && <LocationInfo focused={focused} position="absolute" />}
