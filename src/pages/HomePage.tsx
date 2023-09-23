@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import React from 'react';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
 
 declare global {
   interface Window {
@@ -7,34 +7,25 @@ declare global {
   }
 }
 const HomePage = () => {
-  const mapRef = useRef(null);
-
-  useEffect(() => {
-    let container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-    let options = {
-      //지도를 생성할 때 필요한 기본 옵션
-      center: new window.kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-      level: 3, //지도의 레벨(확대, 축소 정도)
-    };
-
-    let map = new window.kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-
-    // 클린업 함수 (컴포넌트가 언마운트될 때 맵 리소스 정리)
-    return () => {
-      map.destroy();
-    };
-  }, []);
-
   return (
-    <div>
-      <MapContainer ref={mapRef} id="map" />
-    </div>
+    <>
+      <Map
+        center={{ lat: 33.5563, lng: 126.79581 }}
+        style={{ width: '100vw', height: '100vh' }}
+      >
+        <MapMarker
+          position={{ lat: 33.5563, lng: 126.79581 }}
+          image={{
+            src: '/assets/svg/restaurant.svg', // 마커이미지의 주소입니다
+            size: {
+              width: 24,
+              height: 29,
+            }, // 마커이미지의 크기입니다
+          }}
+        ></MapMarker>
+      </Map>
+    </>
   );
 };
-
-const MapContainer = styled.div`
-  width: 500vw;
-  height: 400vh;
-`;
 
 export default HomePage;
