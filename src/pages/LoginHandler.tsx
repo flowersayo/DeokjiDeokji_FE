@@ -19,7 +19,7 @@ const LoginHandler = () => {
       .then((res) => {
         auth(res.data.access_token)
           .then((res) => {
-            setToken(res.data.access_token); // new access token
+            setToken(res.access_token); // new access token
             navigate('/home', { replace: true });
           })
           .catch(() => {
