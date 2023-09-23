@@ -6,6 +6,7 @@ import CreateRecordBtn from 'component/home/CreateRecordBtn';
 import { IPlace } from 'utils/interface';
 import { LocationInfo } from 'component/LocationInfo';
 import { GET } from 'utils/axios';
+import { places } from 'db/places';
 
 declare global {
   interface Window {
@@ -40,31 +41,33 @@ const HomePage = () => {
         setOpen={setIsCreateRecordModalOpen}
       />
       <Map
-        center={{ lat: 33.450705, lng: 126.570677 }}
+        center={{ lat: 37.530025, lng: 126.964773 }}
         style={{ width: '100%', height: '100%' }}
       >
-        {locations.map((loc) => {
+        {places.map((loc) => {
           const latlng = {
             lat: loc.latitude,
             lng: loc.longitude,
           };
           return (
-            <MapMarker
-              key={`${loc.name}-${latlng}`}
-              position={latlng}
-              image={{
-                src: `/assets/svg/${loc.category}.svg`,
-                size: { width: 24, height: 35 },
-              }}
-              title={loc.name}
-              onClick={() => {
-                setIsOpen(true);
-                setFocused(loc);
-              }}
-            />
+            <>
+              <MapMarker
+                key={`${loc.name}-${latlng}`}
+                position={latlng}
+                image={{
+                  src: `/assets/svg/${loc.category}.svg`,
+                  size: { width: 35, height: 35 },
+                }}
+                title={loc.name}
+                onClick={() => {
+                  setIsOpen(true);
+                  setFocused(loc);
+                }}
+              />
+            </>
           );
         })}
-        {isOpen && <LocationInfo focused={focused} />}
+        {isOpen && <LocationInfo focused={focused} position="absolute" />}
       </Map>
       <CreateRecordBtn onClick={handleCreateBtnClick} />
     </HomePageLayout>

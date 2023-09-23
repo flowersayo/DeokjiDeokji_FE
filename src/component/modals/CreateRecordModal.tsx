@@ -1,6 +1,4 @@
-
 import React, { useEffect, useState } from 'react';
-
 import { styled } from 'styled-components';
 import BottomSheet from 'component/BottomSheet';
 import MainBtn from 'component/MainBtn';
@@ -10,6 +8,7 @@ import SearchPlace from 'component/home/SearchPlace';
 import { IPlace, IRecord } from 'utils/interface';
 import DropDownList from 'component/home/DropDownList';
 import DuckJiSrc from 'assets/images/duckji.svg';
+import { createRecord } from 'api/record';
 
 const CreateRecordModal = ({
   isOpen,
@@ -26,8 +25,8 @@ const CreateRecordModal = ({
 
   const initialVisitRecord: IRecord = {
     purpose: 0, // 방문 목적 0 : 덕지순례 갈예정 , 1: 갔다옴
-    category: 'cafe',
     place: {
+      type: 'Cafe',
       id: 1234, // 식별
       address: '',
       name: '', // 장소이름
@@ -35,8 +34,8 @@ const CreateRecordModal = ({
       longitude: 100.0, // 경도
     },
 
-    group: '', // 그룹명
-    member: '', // 멤버명
+    group: 'group', // 그룹명
+    member: 'member', // 멤버명
     temperature: 100,
   };
 
@@ -63,18 +62,24 @@ const CreateRecordModal = ({
     setVisitRecord({ ...visitRecord, group, member });
   };
 
-  const createRecord = () => {
+  const endRecord = async () => {
     //TODO API 요청
-
-    console.log(visitRecord);
-    handleMoveToStep(3);
-    //  setVisitRecord(initialVisitRecord);
+    /*
+    {
+		"id": 기록보관함 id (long),
+		"userId": 유저 id (string),
+		"restaurantId": 식당 id (long),
+		"temp": 온도(int)
+	}*/
+    const response = await createRecord(visitRecord);
+    console.log(response);
+    //handleMoveToStep(4);
+    //setVisitRecord(initialVisitRecord);
   };
   // step
   // 0 : 목적 선택
   // 1: 장소 선택
   // 2: 멤버 선택
-
   const steps = [
     <Box key="step1">
       <Title>어떤 기록을 남기시나요?</Title>
@@ -113,8 +118,17 @@ const CreateRecordModal = ({
           text="이전"
           onClick={() => handleMoveToStep(currentStep - 1)}
         />
-        <MainBtn type={1} text="등록하기" onClick={createRecord} />
+        {purpose === 0 ? (
+          <MainBtn type={1} text="등록하기" onClick={endRecord} />
+        ) : (
+          <MainBtn type={1} text="다음" onClick={createRecord} />
+        )}
       </Row>
+    </Box>,
+    <Box key="step4">
+      <Title>등록이 완료됐어요!</Title>
+      <img src={DuckJiSrc} />
+      <MainBtn type={1} text="네!" onClick={() => setOpen(false)} />
     </Box>,
     <Box key="step4">
       <Title>등록이 완료됐어요!</Title>
@@ -123,16 +137,13 @@ const CreateRecordModal = ({
     </Box>,
   ];
 
-  const handleCreteRecord = () => {
-    //TODO record POST 요청
-  };
   return (
     <BottomSheet isOpen={isOpen} setOpen={setOpen} step={currentStep}>
       <ModalContent>{steps[currentStep]}</ModalContent>
-
     </BottomSheet>
   );
 };
+export default CreateRecordModal;
 
 const ModalContent = styled.div`
   width: 100%;
@@ -161,4 +172,3 @@ const Row = styled.div`
   justify-content: space-between;
   gap: 15px;
 `;
-export default CreateRecordModal;

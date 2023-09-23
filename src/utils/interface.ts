@@ -10,33 +10,25 @@ export interface IGroup {
   members: string[];
 }
 
-// export interface IPlace {
-//   id: number;
-//   name: string;
-//   address: string;
-//   latitude: number;
-//   longitude: number;
-// }
-
-export interface IRecord {
-  purpose: number;
-  category: string;
-  place: IPlace;
-  group: string;
-  member: string;
-  temperature?: number;
-}
-
 export interface IPlace {
   id: number;
   name: string;
   address: string;
   latitude: number;
   longitude: number;
-  category?: string;
+  img?: string;
+  type?: string;
 }
 
-export interface IPeoples {
+export interface IRecord {
+  purpose: number;
+  place: IPlace;
   group: string;
-  name: string;
+  member: string;
+  temperature?: number;
 }
+
+// export interface IPeoples {
+//   group: string;
+//   name: string;
+// }
