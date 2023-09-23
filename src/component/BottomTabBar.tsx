@@ -8,6 +8,7 @@ import MarkerOnIconSrc from 'assets/icons/marker_on.svg';
 import MarkerOffIconSrc from 'assets/icons/marker_off.svg';
 import StickerOnIconSrc from 'assets/icons/sticker_on.svg';
 import StickerOffIconSrc from 'assets/icons/sticker_off.svg';
+import { theme } from 'styles/theme';
 
 const BottomTabBar = () => {
   const tabLists = [
@@ -58,8 +59,11 @@ const BottomTabBar = () => {
                 }}
               >
                 {selected ? <img src={src[0]} /> : <img src={src[1]} />}
-
-                <CustomFont> {name}</CustomFont>
+                {selected ? (
+                  <CustomFont> {name}</CustomFont>
+                ) : (
+                  <CustomFont color={theme.colors.gray03}> {name}</CustomFont>
+                )}
               </Tab>
             </Link>
           );
