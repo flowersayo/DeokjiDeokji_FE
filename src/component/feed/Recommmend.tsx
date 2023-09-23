@@ -2,11 +2,13 @@ import React from 'react';
 import { styled } from 'styled-components';
 import { Body1_1, Body2_1 } from 'styles/font';
 import MainBtn from 'component/MainBtn';
-const Recommmend = () => {
+const Recommmend = ({ showToast }: { showToast: any }) => {
   const answerNo = () => {};
 
   const answerYes = () => {
     //토스트 띄우기
+
+    showToast();
   };
   return (
     <Box>

@@ -1,18 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import { Title } from 'styles/font';
 import Recommmend from 'component/feed/Recommmend';
 import DuckjiHeadSrc from 'assets/images/duckji-head.svg';
+import ToastMessage from 'component/feed/ToastMessage';
 
 const FeedPage = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const showToast = () => {
+    setIsVisible(true);
+  };
   return (
     <FeedPageLayout>
+      {isVisible && (
+        <ToastMessage
+          text={'당연히 가본다 를 추천하셨습니다!'}
+          isVisible={isVisible}
+          setIsVisible={setIsVisible}
+        />
+      )}
+
       <Section>
         <Title>
           덕지순례 오늘 고민,
           <br /> 같이 해결해볼까요?
         </Title>
-        <Recommmend />
+        <Recommmend showToast={showToast} />
       </Section>
       <Section>
         <Title>덕지가 추천하는 이번주 덕지 순례!</Title>
