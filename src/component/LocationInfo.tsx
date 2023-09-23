@@ -2,6 +2,8 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Body1_1, Body2_3 } from 'styles/font';
 import { IPlace } from 'utils/interface';
+import { Hashtag } from './Hashtag';
+import { MemberHashtag } from './MemberHashtag';
 
 interface IPositions {
   position: string;
@@ -22,12 +24,14 @@ export const LocationInfo = ({
           style={{ width: '60px', height: '60px', borderRadius: '10px' }}
         />
       </div>
-      <div>
-        <LocationInfoTop>
-          <Body1_1>{focused?.name}</Body1_1>
-          <Body2_3>{focused?.address}</Body2_3>
-        </LocationInfoTop>
-      </div>
+      <LocationInfoTop>
+        <Body1_1>{focused?.name}</Body1_1>
+        <Body2_3>{focused?.address}</Body2_3>
+      </LocationInfoTop>
+      <HashtagWrap>
+        <MemberHashtag group={'BTS'} name={'정국'} />
+        <Hashtag type={`${focused?.type}`} />
+      </HashtagWrap>
     </LocationInfoContainer>
   );
 };
@@ -68,4 +72,11 @@ const LocationInfoTop = styled.div`
 
   display: flex;
   flex-direction: column;
+`;
+
+const HashtagWrap = styled.div`
+  display: flex;
+  justify-content: flex-start;
+
+  padding-right: 55px;
 `;

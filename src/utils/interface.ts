@@ -28,7 +28,8 @@ export interface IRecord {
   temperature?: number;
 }
 
-// export interface IPeoples {
-//   group: string;
-//   name: string;
-// }
+
+export interface IPeoples {
+  group: string;
+  name: string;
+}

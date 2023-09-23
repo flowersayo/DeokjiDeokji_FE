@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { styled } from 'styled-components';
 import CreateRecordModal from 'component/modals/CreateRecordModal';
 import CreateRecordBtn from 'component/home/CreateRecordBtn';
 import { IPlace } from 'utils/interface';
 import { LocationInfo } from 'component/LocationInfo';
+import { getPlaces, getPlaceByName } from 'api/place';
 import { GET } from 'utils/axios';
 import { places } from 'db/places';
 
@@ -22,6 +23,8 @@ const HomePage = () => {
   const [selectedGroup, setSelectedGroup] = useState<
     'BTS' | '뉴진스' | '블랙핑크' | '세븐틴' | null
   >(null);
+
+  const [places, setPlaces] = useState<IPlace[]>([]);
 
   useEffect(() => {
     if (!selectedGroup) {
@@ -42,7 +45,7 @@ const HomePage = () => {
         });
     }
   }, [selectedGroup]);
-
+ 
   const handleCreateBtnClick = () => {
     setIsCreateRecordModalOpen(true);
   };
@@ -83,7 +86,7 @@ const HomePage = () => {
         center={{ lat: 37.530025, lng: 126.964773 }}
         style={{ width: '100%', height: '100%' }}
       >
-        {places.map((loc) => {
+        {places?.map((loc) => {
           const latlng = {
             lat: loc.latitude,
             lng: loc.longitude,
