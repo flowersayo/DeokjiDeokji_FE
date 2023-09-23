@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title, Body2_1 } from 'styles/font';
+import { Body2_1 } from 'styles/font';
 import { AUTH_URL } from 'utils/constants';
 import styled from 'styled-components';
 import { flexColumnCenter } from 'styles/theme';
@@ -13,16 +13,18 @@ const LoginPage = () => {
 
   return (
     <LoginPageLayout>
-      <TitleWrapper>
-        <Title>
-          덕지와 함께 <br />
-          덕지순례 가실래요?
-        </Title>
-      </TitleWrapper>
-      <Body2_1>먼저 로그인이 필요해요 :)</Body2_1>
-      <KakaoLoginButton onClick={clickLoginButton}>
-        <img src={kakaoLoginButtonImg} alt="카카오 로그인 버튼" />
-      </KakaoLoginButton>
+      <LoginContent>
+        <TitleWrapper>
+          <LoginTitle>
+            덕지와 함께 <br />
+            덕지순례 가실래요?
+          </LoginTitle>
+        </TitleWrapper>
+        <Body2_1>먼저 로그인이 필요해요 :)</Body2_1>
+        <KakaoLoginButton onClick={clickLoginButton}>
+          <img src={kakaoLoginButtonImg} alt="카카오 로그인 버튼" />
+        </KakaoLoginButton>
+      </LoginContent>
       <LoginCharacter src={loginCharacterImg} alt="로그인 캐릭터" />
     </LoginPageLayout>
   );
@@ -31,7 +33,10 @@ const LoginPage = () => {
 const LoginPageLayout = styled.div`
   width: 100%;
   height: 100%;
-  ${flexColumnCenter}
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-content: space-evenly;
+  align-items: center;
 `;
 
 const KakaoLoginButton = styled.button`
@@ -57,6 +62,20 @@ const LoginCharacter = styled.img`
   right: 0;
   bottom: 0;
   margin-bottom: 4.65rem;
+`;
+
+const LoginContent = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  ${flexColumnCenter}
+  justify-content: center;
+`;
+
+const LoginTitle = styled.span`
+  font-size: 2.3rem;
+  font-weight: 600;
+  line-height: 3.3rem; /* 143.478% */
 `;
 
 export default LoginPage;
