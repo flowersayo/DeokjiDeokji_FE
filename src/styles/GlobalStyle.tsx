@@ -5,6 +5,9 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html {
+    font-size: 10px;
+  }
   
   body {
     font-family:  sans-serif; // TODO 폰트 바꾸기
