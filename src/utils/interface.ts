@@ -1,5 +1,6 @@
-export interface ISample {
-  sample: 'sample';
+export interface IGroup {
+  name: string;
+  members: string[];
 }
 
 export interface IPlace {
@@ -8,6 +9,14 @@ export interface IPlace {
   address: string;
   latitude: number;
   longitude: number;
-  category: string;
   img?: string;
+  type?: string;
+}
+
+export interface IRecord {
+  purpose: number;
+  place: IPlace;
+  group: string;
+  member: string;
+  temperature?: number;
 }
