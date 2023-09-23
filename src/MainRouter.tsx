@@ -7,6 +7,8 @@ import CollectBookPage from 'pages/CollectBookPage';
 import BottomTabBar from 'component/BottomTabBar';
 import LoginPage from 'pages/LoginPage';
 import LoginHandler from 'pages/LoginHandler';
+import PrivateRoute from 'PrivateRoute';
+
 const MainRouter = () => {
   return (
     <Container>
@@ -14,10 +16,12 @@ const MainRouter = () => {
         {/*헤더*/}
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/feed" element={<FeedPage />} />
-          <Route path="/collect" element={<CollectBookPage />} />
           <Route path="/api/v1/oauth2/kakao" element={<LoginHandler />} />
+          <Route element={<PrivateRoute authentication={true} />}>
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/feed" element={<FeedPage />} />
+            <Route path="/collect" element={<CollectBookPage />} />
+          </Route>
         </Routes>
         <BottomTabBar />
       </Router>
