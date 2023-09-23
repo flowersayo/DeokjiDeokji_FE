@@ -1,9 +1,9 @@
 export type DataType = 'RESTAURANT' | 'CAFE' | 'BIRTHDAY_CAFE';
 
 export interface IUser {
-  username: string;
+  name: string;
   email: string;
-  birth: string;
+  birthday: string;
 }
 export interface IGroup {
   name: string;

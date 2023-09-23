@@ -23,8 +23,8 @@ const PrivateRoute = ({ children, authentication }: PrivateRouteProps) => {
     if (userState === null) {
       getUser()
         .then((res) => {
-          const { username, email, birth } = res;
-          setUserState({ username, email, birth });
+          const { name, email, birthday } = res;
+          setUserState({ name, email, birthday });
         })
         .catch(() => {
           // alert('로그인이 필요한 페이지입니다.');

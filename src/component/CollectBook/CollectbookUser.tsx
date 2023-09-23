@@ -7,12 +7,12 @@ import { Body1_1, Body2_3 } from 'styles/font';
 const CollectbookUser = () => {
   const userData = useRecoilValue(user);
   if (userData === null) return null;
-  const { username, email } = userData;
+  const { name, email } = userData;
   return (
     <UserInfoWrapper>
       <Circle />
       <UserInfo>
-        <Body1_1>{username + '님'}</Body1_1>
+        <Body1_1>{name + '님'}</Body1_1>
         <Email>{email}</Email>
       </UserInfo>
     </UserInfoWrapper>
