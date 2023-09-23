@@ -1,6 +1,6 @@
 import React from 'react';
-import { Title, Body2_1 } from 'src/styles/font';
-import { AUTH_URL } from 'src/utils/constants';
+import { Title, Body2_1 } from 'styles/font';
+import { AUTH_URL } from 'utils/constants';
 import kakaoLoginButtonImg from 'src/assets/buttons/kakao_login_medium_wide.png';
 
 const LoginPage = () => {
