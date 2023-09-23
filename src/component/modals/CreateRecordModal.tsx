@@ -26,7 +26,7 @@ const CreateRecordModal = ({
   const initialVisitRecord: IRecord = {
     purpose: 0, // 방문 목적 0 : 덕지순례 갈예정 , 1: 갔다옴
     place: {
-      type: 'cafe',
+      type: 'Cafe',
       id: 1234, // 식별
       address: '',
       name: '', // 장소이름
@@ -34,8 +34,8 @@ const CreateRecordModal = ({
       longitude: 100.0, // 경도
     },
 
-    group: '', // 그룹명
-    member: '', // 멤버명
+    group: 'group', // 그룹명
+    member: 'member', // 멤버명
     temperature: 100,
   };
 

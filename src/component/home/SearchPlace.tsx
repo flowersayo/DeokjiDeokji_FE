@@ -8,10 +8,12 @@ const SearchPlace = ({ place, setPlace }: { place: IPlace; setPlace: any }) => {
   const [placeListVisible, setPlaceListVisible] = useState(false); // 장소 리스트
 
   const [inputValue, setInputValue] = useState<string>(place?.name);
+
   const places: IPlace[] = [
     {
       id: 0,
       name: '공덕 프론트원',
+      type: 'Cafe',
       latitude: 101,
       longitude: 101,
       address: '서울 마포구 마포대로 173-14 마포센텀슬...',
@@ -19,6 +21,7 @@ const SearchPlace = ({ place, setPlace }: { place: IPlace; setPlace: any }) => {
     {
       id: 1,
       name: '곱창파는 고깃집 마포점',
+      type: 'Cafe',
       latitude: 101,
       longitude: 101,
       address: '서울 마포구 마포대로 173-14 마포센텀슬...',
@@ -26,6 +29,7 @@ const SearchPlace = ({ place, setPlace }: { place: IPlace; setPlace: any }) => {
     {
       id: 2,
       name: '이화여자대학교',
+      type: 'Cafe',
       latitude: 101,
       longitude: 101,
       address: '서울 마포구 마포대로 173-14 마포센텀슬...',
@@ -33,6 +37,7 @@ const SearchPlace = ({ place, setPlace }: { place: IPlace; setPlace: any }) => {
     {
       id: 3,
       name: '이화여자대학교dd',
+      type: 'Restaurant',
       latitude: 101,
       longitude: 101,
       address: '서울 마포구 마포대로 173-14 마포센텀슬...',
