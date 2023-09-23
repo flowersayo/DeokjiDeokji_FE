@@ -1,11 +1,21 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Body1_1, Body2_3 } from 'styles/font';
 import { IPlace } from 'utils/interface';
 
-export const LocationInfo = ({ focused }: { focused: IPlace | null }) => {
+interface IPositions {
+  position: string;
+}
+
+export const LocationInfo = ({
+  focused,
+  position,
+}: {
+  focused: IPlace | null;
+  position: string;
+}) => {
   return (
-    <LocationInfoContainer>
+    <LocationInfoContainer position={position}>
       <LocationInfoTop>
         <Body1_1>{focused?.name}</Body1_1>
         <Body2_3>{focused?.address}</Body2_3>
@@ -14,18 +24,30 @@ export const LocationInfo = ({ focused }: { focused: IPlace | null }) => {
   );
 };
 
-const LocationInfoContainer = styled.div`
+const LocationInfoContainer = styled.div<IPositions>`
   width: 90%;
   height: 120px;
-  margin: 0 40px 0 20px;
+
   border-radius: 12px;
   background-color: #fff;
-  position: absolute;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  bottom: 120px;
-  z-index: 4;
+
+  ${(props) =>
+    props.position === 'relative'
+      ? css`
+          position: relative;
+          z-index: 2;
+        `
+      : css`
+          position: absolute;
+          bottom: 120px;
+          z-index: 4;
+          margin: 0 40px 0 20px;
+        `}
+  box-shadow: 3px 3px 3px 3px ${({ theme }) => theme.colors.gray02};
 `;
 
 const LocationInfoTop = styled.div`

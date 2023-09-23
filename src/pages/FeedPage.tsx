@@ -4,6 +4,8 @@ import { Title } from 'styles/font';
 import Recommmend from 'component/feed/Recommmend';
 import DuckjiHeadSrc from 'assets/images/duckji-head.svg';
 import ToastMessage from 'component/feed/ToastMessage';
+import { LocationInfo } from 'component/LocationInfo';
+import { places } from 'db/places';
 
 const FeedPage = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,8 +31,20 @@ const FeedPage = () => {
         <Recommmend showToast={showToast} />
       </Section>
       <Section>
-        <Title>덕지가 추천하는 이번주 덕지 순례!</Title>
+        <Left>
+          <Title>덕지가 추천하는 이번주 덕지 순례!</Title>
+        </Left>
+        {places.map((data) => {
+          return (
+            <LocationInfo
+              key={`${data.name}-${data.id}`}
+              focused={data}
+              position="relative"
+            />
+          );
+        })}
       </Section>
+
       <Img src={DuckjiHeadSrc} />
     </FeedPageLayout>
   );
@@ -49,8 +63,14 @@ const Section = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   padding: 22px 0px;
   gap: 10px;
+`;
+
+const Left = styled.div`
+  width: 100%;
+  padding-left: 20px;
 `;
 
 const Img = styled.img`
