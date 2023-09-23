@@ -9,22 +9,13 @@ export interface IPlace {
   address: string;
   latitude: number;
   longitude: number;
+  type?: string;
 }
 
 export interface IRecord {
   purpose: number;
-  category: string;
   place: IPlace;
   group: string;
   member: string;
   temperature?: number;
-}
-
-export interface IPlace {
-  id: number;
-  name: string;
-  address: string;
-  latitude: number;
-  longitude: number;
-  category: string;
 }
