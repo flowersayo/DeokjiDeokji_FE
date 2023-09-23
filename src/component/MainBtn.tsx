@@ -18,7 +18,7 @@ const MainBtn = ({
 }) => {
   return (
     <Box type={type} onClick={onClick}>
-      <CustomFont size="14px">{text}</CustomFont>
+      <CustomFont size="1.4rem">{text}</CustomFont>
     </Box>
   );
 };
@@ -26,8 +26,9 @@ const MainBtn = ({
 const Box = styled.div<BoxProps>`
   display: flex;
   width: 100%;
+  background-color: red;
   height: 49px;
-  padding: 16px 46px;
+  // padding: 16px 46px;
   justify-content: center;
   align-items: center;
   gap: 4px;

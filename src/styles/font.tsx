@@ -21,6 +21,7 @@ export const CustomFont = styled.span<FontProps>`
   font-size: ${({ size }) => (size ? size : '1.2rem')}; // 12px
   color: ${({ color }) => (color ? color : theme.colors.black)};
   font-style: normal;
+  white-space: nowrap;
   font-weight: 500;
   line-height: 16px; /* 133.333% */
 `;

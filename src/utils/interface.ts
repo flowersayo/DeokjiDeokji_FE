@@ -9,6 +9,7 @@ export interface IPlace {
   address: string;
   latitude: number;
   longitude: number;
+  img?: string;
   type?: string;
 }
 
