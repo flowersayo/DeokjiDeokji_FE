@@ -2,7 +2,13 @@ import React from 'react';
 import { styled } from 'styled-components';
 
 const CollectBookPage = () => {
-  return <CollectBookPageLayout>collect</CollectBookPageLayout>;
+  return (
+    <CollectBookPageLayout>
+      {/* TODO: userComponent */}
+      {/* TODO: 기록 / 예정 토글 버튼 */}
+      {/* TODO: 콜렉트북 그리드 */}
+    </CollectBookPageLayout>
+  );
 };
 
 const CollectBookPageLayout = styled.div`
