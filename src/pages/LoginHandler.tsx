@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { CLIENT_ID, REDIRECT_URI } from 'src/utils/constants';
 import { setToken } from 'src/utils/axios';
+import { auth, kakaoAuth } from 'src/api/auth';
 
 const LoginHandler = () => {
   const navigate = useNavigate();
@@ -16,26 +15,23 @@ const LoginHandler = () => {
       navigate('/', { replace: true });
       return;
     }
-    // 인증 시도
-    const loginRequest = {
-      grant_type: 'authorization_code',
-      client_id: CLIENT_ID,
-      redirect_uri: REDIRECT_URI,
-      code: code,
-    };
-    axios
-      .post('https://kauth.kakao.com/oauth/token', loginRequest, {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      })
-      .then((response) => {
-        const accessToken = response.data.access_token;
-        setToken(accessToken);
-        navigate('/home', { replace: true });
+    kakaoAuth(code)
+      .then((res) => {
+        setToken(res.data.access_token); // kakao access token
+        auth()
+          .then((res) => {
+            setToken(res.data.data); // new access token
+            navigate('/home', { replace: true });
+          })
+          .catch(() => {
+            // 로그인 불가. 에러 페이지로 이동
+            alert('로그인에 실패했습니다.');
+            navigate('/', { replace: true });
+          });
       })
       .catch(() => {
-        // TODO : 로그인에 실패했습니다. (어떤 형태로든 알림)
+        // 로그인 불가. 에러 페이지로 이동
+        alert('로그인에 실패했습니다.');
         navigate('/', { replace: true });
       });
   }, []);
