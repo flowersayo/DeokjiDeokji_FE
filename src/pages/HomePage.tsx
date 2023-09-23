@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { styled } from 'styled-components';
 import CreateRecordModal from 'component/modals/CreateRecordModal';
 import CreateRecordBtn from 'component/home/CreateRecordBtn';
 import { IPlace } from 'utils/interface';
 import { LocationInfo } from 'component/LocationInfo';
+import { GET } from 'utils/axios';
 import { places } from 'db/places';
 
 declare global {
@@ -18,6 +18,17 @@ const HomePage = () => {
   const [isCreateRecordModalOpen, setIsCreateRecordModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [focused, setFocused] = useState<IPlace | null>(null);
+  const [locations, setLocations] = useState<IPlace[]>([]);
+
+  useEffect(() => {
+    GET('/api/v1/place')
+      .then((res) => {
+        setLocations(res.content);
+      })
+      .catch(() => {
+        alert('데이터를 불러오는데에 실패했습니다.');
+      });
+  }, []);
 
   const handleCreateBtnClick = () => {
     setIsCreateRecordModalOpen(true);
