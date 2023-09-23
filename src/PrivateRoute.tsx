@@ -23,7 +23,7 @@ const PrivateRoute = ({ children, authentication }: PrivateRouteProps) => {
     if (userState === null) {
       getUser()
         .then((res) => {
-          const { username, email, birth } = res.data;
+          const { username, email, birth } = res;
           setUserState({ username, email, birth });
         })
         .catch(() => {
