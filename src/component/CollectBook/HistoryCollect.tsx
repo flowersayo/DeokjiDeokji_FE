@@ -5,19 +5,19 @@ import { DataType } from 'utils/interface';
 import { CollectLayout, CollectName, CollectArtist } from './CollectComponent';
 import temperature_icon from 'assets/icons/fluent_temperature.svg';
 
-type PastCollectProps = {
+type HistoryCollectProps = {
   tag: DataType;
   name: string;
   artist: string;
   temperature: number;
 };
 
-export const PastCollect = ({
+export const HistoryCollect = ({
   tag,
   name,
   artist,
   temperature,
-}: PastCollectProps) => {
+}: HistoryCollectProps) => {
   return (
     <CollectLayout tag={tag}>
       <CollectName>{name}</CollectName>
