@@ -4,55 +4,63 @@ import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { styled } from 'styled-components';
 import CreateRecordModal from 'component/modals/CreateRecordModal';
 import CreateRecordBtn from 'component/home/CreateRecordBtn';
+import { Body1_1, Body2_3, Title } from 'styles/font';
 
 declare global {
   interface Window {
     kakao: any;
   }
 }
+
+interface IPlace {
+  id: number;
+  name: string;
+  address: string;
+  latitude: number;
+  longitude: number;
+  category: string;
+}
+
 const HomePage = () => {
   const [isCreateRecordModalOpen, setIsCreateRecordModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [focused, setFocused] = useState<number | null>(null);
+  const [focused, setFocused] = useState<IPlace | null>(null);
 
   const handleCreateBtnClick = () => {
     setIsCreateRecordModalOpen(true);
   };
+
   const locations = [
     {
       id: 1,
-      title: '카카오',
-      latlng: {
-        lat: 33.450705,
-        lng: 126.570677,
-      },
+      name: '카카오',
+      address: '서울 마포구 마포대로 173-14 마포센텀슬로우',
+      latitude: 33.450705,
+      longitude: 126.570677,
       category: 'restaurant',
     },
     {
       id: 2,
-      title: '생태연못',
-      latlng: {
-        lat: 33.450936,
-        lng: 126.569477,
-      },
+      name: '생태연못',
+      address: '서울 마포구 마포대로 173-14 마포센텀슬로우',
+      latitude: 33.450936,
+      longitude: 126.569477,
       category: 'coffee',
     },
     {
       id: 3,
-      title: '텃밭',
-      latlng: {
-        lat: 33.450879,
-        lng: 126.56994,
-      },
+      name: '텃밭',
+      address: '서울 마포구 마포대로 173-14 마포센텀슬로우',
+      latitude: 33.450879,
+      longitude: 126.56994,
       category: 'birthday',
     },
     {
       id: 4,
-      title: '근린공원',
-      latlng: {
-        lat: 33.451393,
-        lng: 126.570738,
-      },
+      name: '근린공원',
+      address: '서울 마포구 마포대로 173-14 마포센텀슬로우',
+      latitude: 33.451393,
+      longitude: 126.570738,
       category: 'coffee',
     },
   ];
@@ -67,26 +75,39 @@ const HomePage = () => {
         center={{ lat: 33.450705, lng: 126.570677 }}
         style={{ width: '100%', height: '100%' }}
       >
-        {locations.map((loc, idx) => (
-          <>
-            <MapMarker
-              key={`${loc.title}-${loc.latlng}`}
-              position={loc.latlng}
-              image={{
-                src: `/assets/svg/${loc.category}.svg`,
-                size: { width: 24, height: 35 },
-              }}
-              title={loc.title}
-              onClick={() => {
-                setIsOpen(true);
-                setFocused(loc.id);
-              }}
-            />
-          </>
-        ))}
-        {isOpen && <LocationInfoContainer>{focused}</LocationInfoContainer>}
+        {locations.map((loc) => {
+          const latlng = {
+            lat: loc.latitude,
+            lng: loc.longitude,
+          };
+          return (
+            <>
+              <MapMarker
+                key={`${loc.name}-${latlng}`}
+                position={latlng}
+                image={{
+                  src: `/assets/svg/${loc.category}.svg`,
+                  size: { width: 24, height: 35 },
+                }}
+                title={loc.name}
+                onClick={() => {
+                  setIsOpen(true);
+                  setFocused(loc);
+                }}
+              />
+            </>
+          );
+        })}
+        {isOpen && (
+          <LocationInfoContainer>
+            <LocationInfoTop>
+              <Body1_1>{focused?.name}</Body1_1>
+              <Body2_3>{focused?.address}</Body2_3>
+            </LocationInfoTop>
+          </LocationInfoContainer>
+        )}
       </Map>
-        <CreateRecordBtn onClick={handleCreateBtnClick} />
+      <CreateRecordBtn onClick={handleCreateBtnClick} />
     </HomePageLayout>
   );
 };
@@ -109,6 +130,18 @@ const LocationInfoContainer = styled.div`
   align-items: center;
   bottom: 120px;
   z-index: 4;
+`;
+
+const LocationInfoTop = styled.div`
+  width: 70%;
+  height: 50px;
+
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  display: flex;
+  flex-direction: column;
 `;
 
 export default HomePage;
