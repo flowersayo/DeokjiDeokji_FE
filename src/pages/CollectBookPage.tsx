@@ -1,3 +1,4 @@
+import CollectbookUser from 'component/CollectBook/CollectbookUser';
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
 
@@ -5,7 +6,7 @@ const CollectBookPage = () => {
   const [mode, setMode] = useState<'HISTORY' | 'FUTURE'>('HISTORY');
   return (
     <CollectBookPageLayout>
-      {/* TODO: userComponent */}
+      <CollectbookUser />
       <ToggleWrapper>
         <ToggleBtn
           onClick={() => {
