@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { setToken } from 'src/utils/axios';
-import { auth, kakaoAuth } from 'src/api/auth';
+import { setToken } from 'utils/axios';
+import { auth, kakaoAuth } from 'api/auth';
 
 const LoginHandler = () => {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { API_URL } from 'src/utils/constants';
+import { API_URL } from 'utils/constants';
 
 export const getToken = () => localStorage.getItem('access_token');
 export const setToken = (token: string) =>

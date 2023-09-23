@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { GET } from 'src/utils/axios';
-import { CLIENT_ID, REDIRECT_URI } from 'src/utils/constants';
+import { GET } from 'utils/axios';
+import { CLIENT_ID, REDIRECT_URI } from 'utils/constants';
 
 // access token을 받아오는 api
 export const auth = () => {

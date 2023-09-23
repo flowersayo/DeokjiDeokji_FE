@@ -1,7 +1,9 @@
 import React from 'react';
 import { Title, Body2_1 } from 'styles/font';
 import { AUTH_URL } from 'utils/constants';
-import kakaoLoginButtonImg from 'src/assets/buttons/kakao_login_medium_wide.png';
+import kakaoLoginButtonImg from 'assets/buttons/kakao_login_medium_wide.png';
+// import styled from 'styled-components';
+// import { flexColumnCenter } from 'styles/theme';
 
 const LoginPage = () => {
   const clickLoginButton = () => {
@@ -19,5 +21,11 @@ const LoginPage = () => {
     </div>
   );
 };
+
+// const LoginPageLayout = styled.div`
+//   width: 100%;
+//   height: 100%;
+//   ${flexColumnCenter}
+// `;
 
 export default LoginPage;
