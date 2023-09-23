@@ -4,21 +4,13 @@ import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { styled } from 'styled-components';
 import CreateRecordModal from 'component/modals/CreateRecordModal';
 import CreateRecordBtn from 'component/home/CreateRecordBtn';
-import { Body1_1, Body2_3, Title } from 'styles/font';
+import { IPlace } from 'utils/interface';
+import { LocationInfo } from 'component/LocationInfo';
 
 declare global {
   interface Window {
     kakao: any;
   }
-}
-
-interface IPlace {
-  id: number;
-  name: string;
-  address: string;
-  latitude: number;
-  longitude: number;
-  category: string;
 }
 
 const HomePage = () => {
@@ -98,14 +90,7 @@ const HomePage = () => {
             </>
           );
         })}
-        {isOpen && (
-          <LocationInfoContainer>
-            <LocationInfoTop>
-              <Body1_1>{focused?.name}</Body1_1>
-              <Body2_3>{focused?.address}</Body2_3>
-            </LocationInfoTop>
-          </LocationInfoContainer>
-        )}
+        {isOpen && <LocationInfo focused={focused} />}
       </Map>
       <CreateRecordBtn onClick={handleCreateBtnClick} />
     </HomePageLayout>
@@ -116,32 +101,6 @@ const HomePageLayout = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
-`;
-
-const LocationInfoContainer = styled.div`
-  width: 90%;
-  height: 120px;
-  margin: 0 40px 0 20px;
-  border-radius: 12px;
-  background-color: #fff;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  bottom: 120px;
-  z-index: 4;
-`;
-
-const LocationInfoTop = styled.div`
-  width: 70%;
-  height: 50px;
-
-  position: absolute;
-  top: 20px;
-  right: 20px;
-
-  display: flex;
-  flex-direction: column;
 `;
 
 export default HomePage;
