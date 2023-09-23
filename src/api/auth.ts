@@ -4,7 +4,7 @@ import { CLIENT_ID, REDIRECT_URI } from 'utils/constants';
 
 // access token을 받아오는 api
 export const auth = (token: string) => {
-  return POST('/api/v1/oauth2/kakao', { access_token: token });
+  return POST('/api/v1/auth/login', { accessToken: token });
 };
 
 // kakaoAuth access token을 받아오는 api
