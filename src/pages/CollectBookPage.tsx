@@ -2,6 +2,7 @@ import CollectbookUser from 'component/CollectBook/CollectbookUser';
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import { HistoryGrid } from 'component/CollectBook/HistoryGrid';
+import { FutureGrid } from 'component/CollectBook/FutureGrid';
 
 const CollectBookPage = () => {
   const [mode, setMode] = useState<'HISTORY' | 'FUTURE'>('HISTORY');
@@ -26,7 +27,7 @@ const CollectBookPage = () => {
           예정 보관함
         </ToggleBtn>
       </ToggleWrapper>
-      {mode === 'HISTORY' ? <HistoryGrid /> : <div>예정 보관함</div>}
+      {mode === 'HISTORY' ? <HistoryGrid /> : <FutureGrid />}
     </CollectBookPageLayout>
   );
 };
