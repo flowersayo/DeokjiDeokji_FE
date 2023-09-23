@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Body1_1, Body2_3 } from 'styles/font';
 import { IPlace } from 'utils/interface';
 import { Hashtag } from './Hashtag';
+import { MemberHashtag } from './MemberHashtag';
 
 export const LocationInfo = ({ focused }: { focused: IPlace | null }) => {
   return (
@@ -11,9 +12,10 @@ export const LocationInfo = ({ focused }: { focused: IPlace | null }) => {
         <Body1_1>{focused?.name}</Body1_1>
         <Body2_3>{focused?.address}</Body2_3>
       </LocationInfoTop>
-      <div>
+      <HashtagWrap>
+        <MemberHashtag group={'BTS'} name={'정국'} />
         <Hashtag category={`${focused?.category}`} />
-      </div>
+      </HashtagWrap>
     </LocationInfoContainer>
   );
 };
@@ -42,4 +44,8 @@ const LocationInfoTop = styled.div`
 
   display: flex;
   flex-direction: column;
+`;
+
+const HashtagWrap = styled.div`
+  display: flex;
 `;
