@@ -1,11 +1,7 @@
 import { atom } from 'recoil';
 import { IUser } from './interface';
 
-export const user = atom<IUser>({
+export const user = atom<IUser | null>({
   key: 'user',
-  default: {
-    username: '',
-    email: '',
-    birth: '',
-  },
+  default: null,
 });
