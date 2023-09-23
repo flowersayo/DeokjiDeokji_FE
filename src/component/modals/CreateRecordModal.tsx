@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import BottomSheet from 'component/BottomSheet';
 
@@ -9,8 +9,10 @@ const CreateRecordModal = ({
   isOpen: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const [currentStep, setCurrentStep] = useState<number>(0);
+
   return (
-    <BottomSheet isOpen={isOpen} setOpen={setOpen}>
+    <BottomSheet isOpen={isOpen} setOpen={setOpen} step={currentStep}>
       <ModalContent></ModalContent>
     </BottomSheet>
   );
