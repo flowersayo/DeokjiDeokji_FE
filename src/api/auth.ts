@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { GET } from 'utils/axios';
+import { POST } from 'utils/axios';
 import { CLIENT_ID, REDIRECT_URI } from 'utils/constants';
 
 // access token을 받아오는 api
-export const auth = () => {
-  return GET('/api/v1/oauth2/kakao');
+export const auth = (token: string) => {
+  return POST('/api/v1/oauth2/kakao', { access_token: token });
 };
 
 // kakaoAuth access token을 받아오는 api

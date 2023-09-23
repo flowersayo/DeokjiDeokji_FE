@@ -17,8 +17,7 @@ const LoginHandler = () => {
     }
     kakaoAuth(code)
       .then((res) => {
-        setToken(res.data.access_token); // kakao access token
-        auth()
+        auth(res.data.access_token)
           .then((res) => {
             setToken(res.data.data); // new access token
             navigate('/home', { replace: true });
