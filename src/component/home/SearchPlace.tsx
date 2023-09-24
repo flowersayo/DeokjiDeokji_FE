@@ -28,25 +28,33 @@ const SearchPlace = ({ place, setPlace }: { place: IPlace; setPlace: any }) => {
     },
     {
       id: 2,
-      name: '이화여자대학교',
-      type: 'Cafe',
+      name: '톤앤매너',
+      type: 'BirthCafe',
       latitude: 101,
       longitude: 101,
-      address: '서울 마포구 마포대로 173-14 마포센텀슬...',
+      address: '서울 마포구 와우산로29가길 13 2층 톤앤매너',
     },
     {
       id: 3,
-      name: '이화여자대학교dd',
-      type: 'Restaurant',
+      name: '앤디스 커피 홍대점',
+      type: 'Cafe',
       latitude: 101,
       longitude: 101,
-      address: '서울 마포구 마포대로 173-14 마포센텀슬...',
+      address: '서울 마포구 와우산로35길 75 2층,3층',
+    },
+    {
+      id: 4,
+      name: '카페 스핀오프',
+      type: 'Cafe',
+      latitude: 101,
+      longitude: 101,
+      address: '서울 마포구 와우산로 161 성경빌딩 2층 203호',
     },
   ];
   return (
     <Box>
       <Input
-        placeholder="덕지순례 갈 원하는 장소를 검색해보세요"
+        placeholder="덕지순례 갈 원하는 장소를 입력해주세요"
         onFocus={() => setPlaceListVisible(true)}
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}

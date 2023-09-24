@@ -27,7 +27,26 @@ const DropDownList = ({
     },
     {
       name: '뉴진스',
-      members: ['뉴', '진', '스'],
+      members: ['해린', '민지', '다니엘', '하니'],
+    },
+    {
+      name: '블랙핑크',
+      members: ['제니', '리사', '지수', '로제'],
+    },
+    {
+      name: '세븐틴',
+      members: [
+        '민규',
+        '정한',
+        '원우',
+        '준',
+        '조슈아',
+        '에스쿱스',
+        '호시',
+        '도겸',
+        '우지',
+        '승관',
+      ],
     },
   ];
 
@@ -95,7 +114,7 @@ const DropDown = ({
 };
 const List = styled.div`
   display: flex;
-
+  height: 100%;
   width: 100%;
   flex-direction: column;
   gap: 16px;

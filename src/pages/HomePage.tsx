@@ -45,7 +45,7 @@ const HomePage = () => {
         });
     }
   }, [selectedGroup]);
- 
+
   const handleCreateBtnClick = () => {
     setIsCreateRecordModalOpen(true);
   };
@@ -96,7 +96,7 @@ const HomePage = () => {
               key={`${loc.name}-${latlng}`}
               position={latlng}
               image={{
-                src: `/assets/svg/${loc.category}.svg`,
+                src: `/assets/svg/${loc.type}.svg`,
                 size: { width: 35, height: 35 },
               }}
               title={loc.name}

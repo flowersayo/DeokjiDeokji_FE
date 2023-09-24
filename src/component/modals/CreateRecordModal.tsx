@@ -64,17 +64,10 @@ const CreateRecordModal = ({
 
   const endRecord = async () => {
     //TODO API 요청
-    /*
-    {
-		"id": 기록보관함 id (long),
-		"userId": 유저 id (string),
-		"restaurantId": 식당 id (long),
-		"temp": 온도(int)
-	}*/
     const response = await createRecord(visitRecord);
     console.log(response);
-    //handleMoveToStep(4);
-    //setVisitRecord(initialVisitRecord);
+    handleMoveToStep(4);
+    setVisitRecord(initialVisitRecord);
   };
   // step
   // 0 : 목적 선택
@@ -121,16 +114,19 @@ const CreateRecordModal = ({
         {purpose === 0 ? (
           <MainBtn type={1} text="등록하기" onClick={endRecord} />
         ) : (
-          <MainBtn type={1} text="다음" onClick={createRecord} />
+          <MainBtn
+            type={1}
+            text="다음"
+            onClick={() => handleMoveToStep(currentStep + 1)}
+          />
         )}
       </Row>
     </Box>,
     <Box key="step4">
-      <Title>등록이 완료됐어요!</Title>
-      <img src={DuckJiSrc} />
-      <MainBtn type={1} text="네!" onClick={() => setOpen(false)} />
+      <Title>{place.name} 에 대한 온도를 등록해주세요!</Title>
+      <MainBtn type={1} text="등록하기" onClick={endRecord} />
     </Box>,
-    <Box key="step4">
+    <Box key="step5">
       <Title>등록이 완료됐어요!</Title>
       <img src={DuckJiSrc} />
       <MainBtn type={1} text="네!" onClick={() => setOpen(false)} />
