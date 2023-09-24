@@ -4,7 +4,7 @@ import { Body2_3 } from 'styles/font';
 import { theme } from 'styles/theme';
 import { IPeoples } from 'utils/interface';
 
-export const MemberHashtag = ({ group, name }: IPeoples) => {
+export const MemberHashtag = ({ group, name }: any) => {
   return (
     <HashtagContainer>
       <Body2_3 color={`${theme.colors.white}`}>

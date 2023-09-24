@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Body1_1, Body2_3 } from 'styles/font';
-import { IPlace } from 'utils/interface';
+import { IPlace, IRecord } from 'utils/interface';
 import { Hashtag } from './Hashtag';
 import { MemberHashtag } from './MemberHashtag';
 
@@ -13,24 +13,24 @@ export const LocationInfo = ({
   focused,
   position,
 }: {
-  focused: IPlace | null;
+  focused: IRecord | null;
   position: string;
 }) => {
   return (
     <LocationInfoContainer position={position}>
       <div style={{ position: 'absolute', left: 20, top: 15 }}>
         <img
-          src={focused?.img}
+          src={focused?.place.img}
           style={{ width: '60px', height: '60px', borderRadius: '10px' }}
         />
       </div>
       <LocationInfoTop>
-        <Body1_1>{focused?.name}</Body1_1>
-        <Body2_3>{focused?.address}</Body2_3>
+        <Body1_1>{focused?.place.name}</Body1_1>
+        <Body2_3>{focused?.place.address}</Body2_3>
       </LocationInfoTop>
       <HashtagWrap>
-        <MemberHashtag group={'BTS'} name={'정국'} />
-        <Hashtag type={`${focused?.type}`} />
+        <MemberHashtag group={focused?.group} name={focused?.member} />
+        <Hashtag type={focused?.place.type} />
       </HashtagWrap>
     </LocationInfoContainer>
   );

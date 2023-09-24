@@ -3,9 +3,10 @@ import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { styled } from 'styled-components';
 import CreateRecordModal from 'component/modals/CreateRecordModal';
 import CreateRecordBtn from 'component/home/CreateRecordBtn';
-import { IPlace } from 'utils/interface';
+import { IPlace, IRecord } from 'utils/interface';
 import { LocationInfo } from 'component/LocationInfo';
 import { GET } from 'utils/axios';
+import { records } from 'db/records';
 
 declare global {
   interface Window {
@@ -16,7 +17,7 @@ declare global {
 const HomePage = () => {
   const [isCreateRecordModalOpen, setIsCreateRecordModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [focused, setFocused] = useState<IPlace | null>(null);
+  const [focused, setFocused] = useState<IRecord | null>(null);
   const [locations, setLocations] = useState<IPlace[]>([]);
   const [selectedGroup, setSelectedGroup] = useState<
     'BTS' | 'newJeans' | 'BlackPink' | 'seventeen' | null
@@ -47,6 +48,17 @@ const HomePage = () => {
   const handleCreateBtnClick = () => {
     setIsCreateRecordModalOpen(true);
   };
+
+  /*
+
+export interface IRecord {
+  purpose: number;
+  place: IPlace;
+  group: string;
+  member: string;
+  temperature?: number;
+}
+*/
 
   return (
     <HomePageLayout>
@@ -84,20 +96,20 @@ const HomePage = () => {
         center={{ lat: 37.530025, lng: 126.964773 }}
         style={{ width: '100%', height: '100%' }}
       >
-        {places?.map((loc) => {
+        {records?.map((loc) => {
           const latlng = {
-            lat: loc.latitude,
-            lng: loc.longitude,
+            lat: loc.place.latitude,
+            lng: loc.place.longitude,
           };
           return (
             <MapMarker
-              key={`${loc.name}-${latlng}`}
+              key={`${loc.place.name}-${latlng}`}
               position={latlng}
               image={{
-                src: `/assets/svg/${loc.type}.svg`,
+                src: `/assets/svg/${loc.place.type}.svg`,
                 size: { width: 35, height: 35 },
               }}
-              title={loc.name}
+              title={loc.place.name}
               onClick={() => {
                 setIsOpen(true);
                 setFocused(loc);

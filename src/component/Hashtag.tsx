@@ -12,18 +12,18 @@ interface hashtags {
 }
 
 const HashtagColors: hashtags = {
-  restaurant: theme.colors.purple,
-  coffee: theme.colors.green,
-  birthday: theme.colors.blue,
+  Restaurant: theme.colors.purple,
+  Cafe: theme.colors.green,
+  BirthCafe: theme.colors.blue,
 };
 
 const HashtagTexts: hashtags = {
-  restaurant: '맛집',
-  coffee: '카페',
-  birthday: '생일 카페',
+  Restaurant: '맛집',
+  Cafe: '카페',
+  BirthCafe: '생일 카페',
 };
 
-export const Hashtag = ({ type }: IHashtag) => {
+export const Hashtag = ({ type }: any) => {
   return (
     <HashtagContainer color={`${HashtagColors[type]}`}>
       <Body2_3>#{`${HashtagTexts[type]}`}</Body2_3>
