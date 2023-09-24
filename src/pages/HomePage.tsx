@@ -115,6 +115,10 @@ const HomePage = () => {
 const GroupFilterWrapper = styled.div`
   display: flex;
   gap: 1.15rem;
+  display: flex;
+  position: absolute;
+  top: 10px;
+  z-index: 2;
   margin: 0 2.76rem;
   margin-top: 1.5rem;
 `;
