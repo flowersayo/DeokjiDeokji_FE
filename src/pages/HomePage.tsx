@@ -5,9 +5,7 @@ import CreateRecordModal from 'component/modals/CreateRecordModal';
 import CreateRecordBtn from 'component/home/CreateRecordBtn';
 import { IPlace } from 'utils/interface';
 import { LocationInfo } from 'component/LocationInfo';
-import { getPlaces, getPlaceByName } from 'api/place';
 import { GET } from 'utils/axios';
-import { places } from 'db/places';
 
 declare global {
   interface Window {
@@ -21,7 +19,7 @@ const HomePage = () => {
   const [focused, setFocused] = useState<IPlace | null>(null);
   const [locations, setLocations] = useState<IPlace[]>([]);
   const [selectedGroup, setSelectedGroup] = useState<
-    'BTS' | '뉴진스' | '블랙핑크' | '세븐틴' | null
+    'BTS' | 'newJeans' | 'BlackPink' | 'seventeen' | null
   >(null);
 
   const [places, setPlaces] = useState<IPlace[]>([]);
@@ -60,20 +58,20 @@ const HomePage = () => {
           BTS
         </GroupFilterBtn>
         <GroupFilterBtn
-          $selected={selectedGroup === '뉴진스'}
-          onClick={() => setSelectedGroup('뉴진스')}
+          $selected={selectedGroup === 'newJeans'}
+          onClick={() => setSelectedGroup('newJeans')}
         >
           뉴진스
         </GroupFilterBtn>
         <GroupFilterBtn
-          $selected={selectedGroup === '블랙핑크'}
-          onClick={() => setSelectedGroup('블랙핑크')}
+          $selected={selectedGroup === 'BlackPink'}
+          onClick={() => setSelectedGroup('BlackPink')}
         >
           블랙핑크
         </GroupFilterBtn>
         <GroupFilterBtn
-          $selected={selectedGroup === '세븐틴'}
-          onClick={() => setSelectedGroup('세븐틴')}
+          $selected={selectedGroup === 'seventeen'}
+          onClick={() => setSelectedGroup('seventeen')}
         >
           세븐틴
         </GroupFilterBtn>
