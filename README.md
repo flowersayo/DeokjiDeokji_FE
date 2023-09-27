@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+![image](https://github.com/flowersayo/DeokjiDeokji_FE/assets/86418674/aec38ba3-6415-464c-a981-14db8d5579a4)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+<img src="https://github.com/flowersayo/DeokjiDeokji_FE/assets/86418674/46a6863e-6c41-4f27-ba14-4becbcb05b6e" 
+  width=300 />
 
-In the project directory, you can run:
 
-### `npm start`
+## 💭 덕지와 덕지순례 가실래요?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+> 덕지덕지는 **덕**질**지**도에 덕질 장소 스티커를 덕지덕지 붙인다는 의미로, 내 최애가 다녀간 맛집, 카페, 내 최애의 생일카페 정보를 한 곳에 모아 **k-pop팬들의 덕지순례를 돕는 서비스**입니다.
+> 
+- k-pop 팬이라면 공감되는 오늘의 **덕지순례 고민**에 의견을 남겨주세요!
+- 누구나 등록 가능한 **덕질 공유 지도**를 확인해보세요!
+- 내가 다녀온 **덕질 추억을 기록**해보세요!
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+### 저희가 생각하는 오프라인 덕질 경험의 문제점은
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**🚨 모든 정보가 분산되어있어요.**
 
-### `npm run build`
+- K-pop 아티스트의 덕지순례 정보는 다양한 SNS, 블로그에 흩어져있어 사용자들이 관련 정보를 찾기 어려워요.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**🚨 덕지순례를 기록할 수 있는 곳이 없어요.**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 맛집이나 카페 방문 시 팬들은 추억을 기록하고 공유하고 싶어 하지만, 이를 해결할 수 있는 서비스가 없어요.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 그래서 저희는 이렇게 해결했어요!
 
-### `npm run eject`
+**🥏 덕지덕지 피드**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 오늘의 덕지순례 고민을 확인하고 자유롭게 투표에 참여할 수 있어요. 또한, 덕지덕지가 추천하는 장소나 활동도 확인할 수 있어요.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**🥏 함께 만들어가는 덕질 공유 지도**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- 덕지덕지는 누구나 쉽게 덕지순례 장소를 등록해요. k-pop팬이라면 지도를 함께 보고 공유할 수 있어요.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**🥏 덕지순례 기록 및 관리용 콜렉트북**
 
-## Learn More
+- 팬들은 자신이 다녀온 덕지순례 방문 기록과 앞으로 갈 덕지순례 기록을 한 곳에 모아볼 수 있어요.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![image](https://github.com/flowersayo/DeokjiDeokji_FE/assets/86418674/d245f2b6-5f25-4955-80d2-6c5e9494a90b)
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### **협업툴, 디자인, 기술 스택 리스트**
 
-### Analyzing the Bundle Size
+- **디자인, 기획**
+    - 피그마, 노션
+- **프론트엔드**
+    - React, eslint, prettier, Typescript, styled-components, recoil, axios.
+- **백엔드**
+    - nestJs, Prisma, AWS ec2, RDS (Mysql), Aws S3
+ 
+### 팀정보
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![image](https://github.com/flowersayo/DeokjiDeokji_FE/assets/86418674/746835bf-b2a8-44c7-8923-05375ba54fbf)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
