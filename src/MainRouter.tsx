@@ -18,7 +18,7 @@ const MainRouter = () => {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/api/v1/oauth2/kakao" element={<LoginHandler />} />
-        <Route element={<PrivateRoute authentication={true} />}>
+        <Route>
           <Route path="/home" element={<HomePage />} />
           <Route path="/feed" element={<FeedPage />} />
           <Route path="/collect" element={<CollectBookPage />} />
