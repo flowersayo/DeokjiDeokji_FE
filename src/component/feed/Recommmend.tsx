@@ -24,6 +24,7 @@ const Recommmend = ({ showToast }: { showToast: any }) => {
 
 const Box = styled.div`
   width: 100%;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 14px;

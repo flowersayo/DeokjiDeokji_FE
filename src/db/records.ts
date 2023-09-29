@@ -8,7 +8,55 @@
 }
 */
 
-export const records = [
+/*
+address
+: 
+"서울 용산구 한강로3가 40-317"
+id
+: 
+239691324
+img
+: 
+"http://place.map.kakao.com/239691324"
+
+name
+: 
+"트래버틴"
+type
+: 
+"Cafe"
+*/
+export const RECORD_DUMMY_DATA = [
+  {
+    purpose: 0,
+    group: '블랙핑크',
+    member: '제니',
+
+    place: {
+      id: 1,
+      name: '트래버틴',
+      address: '서울 용산구 한강로3가 40-317',
+      latitude: 37.524860512837265,
+      longitude: 126.96206847145102,
+      type: 'Cafe',
+      img: '"http://place.map.kakao.com/239691324"',
+    },
+  },
+  {
+    purpose: 0,
+    group: '뉴진스',
+    member: '다니엘',
+
+    place: {
+      id: 1296535041,
+      name: '그린코너',
+      address: '서울 용산구 한강로3가 40-317',
+      latitude: 37.5256273611397,
+      longitude: 126.962366741869,
+      type: 'Cafe',
+      img: 'http://place.map.kakao.com/1296535041',
+    },
+  },
   {
     purpose: 0,
     group: '아이즈원',
@@ -71,11 +119,11 @@ export const records = [
     member: '민지',
     place: {
       id: 5,
-      name: '상수동카페311',
+      name: '당스',
       address: '서울특별시 마포구 상수동 독막로15길 13-5',
-      latitude: 37.548524,
-      longitude: 126.921894,
-      type: 'Cafe',
+      latitude: 37.524425159784,
+      longitude: 126.961546047561,
+      type: 'Restaurant',
       img: 'https://lh5.googleusercontent.com/p/AF1QipOwigu_OjZLIlPDvYJBJgRZtXCvqN_btqdPCqTl=w444-h240-k-no',
     },
   },
@@ -91,6 +139,21 @@ export const records = [
       longitude: 126.962946,
       type: 'Restaurant',
       img: 'https://lh5.googleusercontent.com/p/AF1QipM1WPYOsjDEhptJMnyRlhCB7UtE6l66VHem6ADo=w408-h510-k-no',
+    },
+  },
+  {
+    purpose: 1,
+    group: '블랙핑크',
+    member: '로제',
+    place: {
+      id: 6,
+      name: '디지엔콤',
+      address: '서울특별시 용산구 한강대로15길 27',
+      latitude: 37.522995723541655,
+      longitude: 126.96296875386713,
+
+      type: 'Restaurant',
+      img: 'http://place.map.kakao.com/12845358',
     },
   },
 ];

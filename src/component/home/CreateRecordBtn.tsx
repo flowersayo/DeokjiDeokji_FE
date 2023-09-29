@@ -5,12 +5,10 @@ const CreateRecordBtn = ({ onClick }: { onClick: any }) => {
 };
 
 const Circle = styled.div`
-  position: absolute;
   display: flex;
   justify-content: center; /* 가로 중앙 정렬 */
   align-items: center; /* 세로 중앙 정렬 */
-  bottom: 100px;
-  right: 24px;
+
   width: 59px;
   height: 59px;
   border-radius: 50%; /* 동그라미 모양을 위한 속성 */

@@ -6,7 +6,9 @@ import CreateRecordBtn from 'component/home/CreateRecordBtn';
 import { IPlace, IRecord } from 'utils/interface';
 import { LocationInfo } from 'component/LocationInfo';
 import { GET } from 'utils/axios';
-import { records } from 'db/records';
+import { RECORD_DUMMY_DATA } from 'db/records';
+import GroupFilter from 'component/home/GroupFilter';
+import { getPlaces } from 'api/place';
 
 declare global {
   interface Window {
@@ -16,142 +18,107 @@ declare global {
 
 const HomePage = () => {
   const [isCreateRecordModalOpen, setIsCreateRecordModalOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   const [focused, setFocused] = useState<IRecord | null>(null);
-  const [locations, setLocations] = useState<IPlace[]>([]);
+
+  const [records, setRecords] = useState<IRecord[]>(RECORD_DUMMY_DATA);
+  const [selectedLocation, setSelectedLocation] = useState<IPlace>(); // 선택장소
   const [selectedGroup, setSelectedGroup] = useState<
-    'BTS' | 'newJeans' | 'BlackPink' | 'seventeen' | null
+    'BTS' | '뉴진스' | '블랙핑크' | '세븐틴' | null
   >(null);
 
-  const [places, setPlaces] = useState<IPlace[]>([]);
-
   useEffect(() => {
-    if (!selectedGroup) {
-      GET('/api/v1/place')
-        .then((res) => {
-          setLocations(res.content);
-        })
-        .catch(() => {
-          alert('데이터를 불러오는데에 실패했습니다.');
-        });
-    } else {
-      GET(`/api/v1/idol/group/${selectedGroup}`)
-        .then((res) => {
-          setLocations(res.content);
-        })
-        .catch(() => {
-          alert('데이터를 불러오는데에 실패했습니다.');
-        });
-    }
-  }, [selectedGroup]);
+    // const result = getPlaces();
+    // setRecords(result.data);
+  }, []);
 
   const handleCreateBtnClick = () => {
     setIsCreateRecordModalOpen(true);
   };
 
-  /*
-
-export interface IRecord {
-  purpose: number;
-  place: IPlace;
-  group: string;
-  member: string;
-  temperature?: number;
-}
-*/
+  const initState = () => {
+    // 상태 초기화
+    setSelectedGroup(null);
+    setFocused(null);
+  };
 
   return (
     <HomePageLayout>
-      <GroupFilterWrapper>
-        <GroupFilterBtn
-          $selected={selectedGroup === 'BTS'}
-          onClick={() => setSelectedGroup('BTS')}
-        >
-          BTS
-        </GroupFilterBtn>
-        <GroupFilterBtn
-          $selected={selectedGroup === 'newJeans'}
-          onClick={() => setSelectedGroup('newJeans')}
-        >
-          뉴진스
-        </GroupFilterBtn>
-        <GroupFilterBtn
-          $selected={selectedGroup === 'BlackPink'}
-          onClick={() => setSelectedGroup('BlackPink')}
-        >
-          블랙핑크
-        </GroupFilterBtn>
-        <GroupFilterBtn
-          $selected={selectedGroup === 'seventeen'}
-          onClick={() => setSelectedGroup('seventeen')}
-        >
-          세븐틴
-        </GroupFilterBtn>
-      </GroupFilterWrapper>
       <CreateRecordModal
         isOpen={isCreateRecordModalOpen}
         setOpen={setIsCreateRecordModalOpen}
       />
+      <GroupFilter
+        selectedGroup={selectedGroup}
+        setSelectedGroup={setSelectedGroup}
+      />
       <Map
-        center={{ lat: 37.530025, lng: 126.964773 }}
+        center={{ lat: 37.525121, lng: 126.96339 }}
         style={{ width: '100%', height: '100%' }}
+        onClick={initState}
       >
-        {records?.map((loc) => {
-          const latlng = {
-            lat: loc.place.latitude,
-            lng: loc.place.longitude,
-          };
-          return (
-            <MapMarker
-              key={`${loc.place.name}-${latlng}`}
-              position={latlng}
-              image={{
-                src: `/assets/svg/${loc.place.type}.svg`,
-                size: { width: 35, height: 35 },
-              }}
-              title={loc.place.name}
-              onClick={() => {
-                setIsOpen(true);
-                setFocused(loc);
-              }}
-            />
-          );
-        })}
-        {isOpen && <LocationInfo focused={focused} position="absolute" />}
+        {records
+          ?.filter((record, idx) => {
+            return selectedGroup ? selectedGroup === record.group : true;
+          })
+          .map((loc) => {
+            const latlng = {
+              lat: loc.place.latitude,
+              lng: loc.place.longitude,
+            };
+            return (
+              <MapMarker
+                key={`${loc.place.name}-${latlng}`}
+                position={latlng}
+                image={{
+                  src: `/assets/svg/${loc.place.type}.svg`,
+                  size: { width: 35, height: 35 },
+                }}
+                title={loc.place.name}
+                onClick={() => {
+                  setFocused(loc);
+                }}
+              />
+            );
+          })}
+        {focused && (
+          <LocationContainer>
+            <LocationInfo focused={focused} shadow />
+          </LocationContainer>
+        )}
       </Map>
-      <CreateRecordBtn onClick={handleCreateBtnClick} />
+      <BtnContainer>
+        <CreateRecordBtn onClick={handleCreateBtnClick} />
+      </BtnContainer>
     </HomePageLayout>
   );
 };
 
-const GroupFilterWrapper = styled.div`
-  display: flex;
-  gap: 1.15rem;
-  display: flex;
+const BtnContainer = styled.div`
+  width: 100%;
   position: absolute;
-  top: 10px;
-  z-index: 2;
-  margin: 0 2.76rem;
-  margin-top: 1.5rem;
-`;
-
-const GroupFilterBtn = styled.button<{ $selected: boolean }>`
+  bottom: 120px;
   display: flex;
-  padding: 0.6912rem 1.8432rem;
-  justify-content: center;
-  align-items: center;
-  gap: 0.4608rem;
-  border-radius: 1.3824rem;
-  border: 1.152px solid #171717;
-  background: ${({ $selected }) => ($selected ? '#74FAB9' : '#FFFFFF')};
-  box-shadow: 0px 0px 11.52px 0px rgba(0, 0, 0, 0.1);
-  font-size: 1.8432rem;
+  justify-content: flex-end;
+  padding: 0 24px;
+  z-index: 3;
 `;
 
 const HomePageLayout = styled.div`
   width: 100%;
   height: 100%;
+  background-color: red;
   position: relative;
+`;
+
+const LocationContainer = styled.div`
+  width: 100%;
+  position: absolute;
+  bottom: 120px;
+  display: flex;
+  justify-content: center;
+  padding: 0 24px;
+  z-index: 4;
 `;
 
 export default HomePage;

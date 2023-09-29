@@ -30,10 +30,12 @@ const MainRouter = () => {
 };
 
 const Container = styled.div`
+  position: relative;
   display: flex;
   height: calc(var(--vh, 1vh) * 100);
   justify-content: center;
   margin: auto;
+  max-width: 576px;
 `;
 
 export default MainRouter;

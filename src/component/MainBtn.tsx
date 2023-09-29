@@ -26,17 +26,20 @@ const MainBtn = ({
 const Box = styled.div<BoxProps>`
   display: flex;
   width: 100%;
-  background-color: red;
   height: 49px;
   // padding: 16px 46px;
   justify-content: center;
   align-items: center;
-  gap: 4px;
+
   border-radius: 16px;
   border: 1.5px solid var(--mono-black, #171717);
-  border-color: ${({ type }) =>
-    type ? theme.colors.black : theme.colors.gray01};
-  background: ${({ type }) =>
-    type ? theme.colors.green : theme.colors.gray01};
+  border-color: ${({ theme }) => theme.colors.gray01};
+  background-color: ${({ theme }) => theme.colors.gray01};
+
+  &:hover {
+    cursor: pointer;
+    border-color: ${({ theme }) => theme.colors.black};
+    background-color: ${({ theme }) => theme.colors.green};
+  }
 `;
 export default MainBtn;

@@ -5,78 +5,73 @@ import { IPlace, IRecord } from 'utils/interface';
 import { Hashtag } from './Hashtag';
 import { MemberHashtag } from './MemberHashtag';
 
-interface IPositions {
-  position: string;
-}
-
 export const LocationInfo = ({
   focused,
-  position,
+  shadow = false,
 }: {
   focused: IRecord | null;
-  position: string;
+  shadow?: boolean;
 }) => {
   return (
-    <LocationInfoContainer position={position}>
-      <div style={{ position: 'absolute', left: 20, top: 15 }}>
-        <img
-          src={focused?.place.img}
-          style={{ width: '60px', height: '60px', borderRadius: '10px' }}
-        />
-      </div>
-      <LocationInfoTop>
-        <Body1_1>{focused?.place.name}</Body1_1>
-        <Body2_3>{focused?.place.address}</Body2_3>
-      </LocationInfoTop>
-      <HashtagWrap>
-        <MemberHashtag group={focused?.group} name={focused?.member} />
-        <Hashtag type={focused?.place.type} />
-      </HashtagWrap>
+    <LocationInfoContainer shadow={shadow}>
+      <Col>
+        <Row>
+          <img
+            src={focused?.place.img}
+            style={{ width: '46px', height: '46px', borderRadius: '10px' }}
+          />
+          <LocationInfoTop>
+            <Body1_1>{focused?.place.name}</Body1_1>
+            <Body2_3>{focused?.place.address}</Body2_3>
+          </LocationInfoTop>
+        </Row>
+        <Row>
+          <MemberHashtag group={focused?.group} name={focused?.member} />
+          <Hashtag type={focused?.place.type} />
+        </Row>
+      </Col>
     </LocationInfoContainer>
   );
 };
 
-const LocationInfoContainer = styled.div<IPositions>`
-  width: 90%;
+const LocationInfoContainer = styled.div<{ shadow: boolean }>`
+  z-index: 3;
+  background-color: white;
+  width: 100%;
   height: 120px;
-
-  border-radius: 12px;
-  background-color: #fff;
+  padding: 12px;
+  justify-content: space-between;
+  border-radius: 20px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  ${(props) =>
-    props.position === 'relative'
-      ? css`
-          position: relative;
-          /* z-index: 2; */
-        `
-      : css`
-          position: absolute;
-          bottom: 120px;
-          z-index: 4;
-          margin: 0 40px 0 20px;
-        `}
-  box-shadow: 3px 3px 3px 3px ${({ theme }) => theme.colors.gray02};
+  ${({ shadow }) =>
+    shadow &&
+    css`
+      box-shadow: 3px 3px 3px 3px ${({ theme }) => theme.colors.gray02};
+    `}
 `;
 
-const LocationInfoTop = styled.div`
-  width: 70%;
-  height: 50px;
-
-  position: absolute;
-  top: 20px;
-  right: 20px;
-
+const Col = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 `;
 
-const HashtagWrap = styled.div`
+const Row = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+  gap: 11px;
+`;
+const LocationInfoTop = styled.div`
+  height: 50px;
 
-  padding-right: 55px;
+  display: flex;
+  flex-direction: column;
 `;
