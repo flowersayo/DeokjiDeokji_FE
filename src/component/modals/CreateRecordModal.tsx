@@ -11,6 +11,7 @@ import DuckJiSrc from 'assets/images/duckji.svg';
 import { createRecord } from 'api/record';
 import CategorySelector from 'component/home/CategorySelector';
 import ToastMessage from 'component/feed/ToastMessage';
+import SliderUI from 'component/home/SliderUI';
 
 const CreateRecordModal = ({
   isOpen,
@@ -20,6 +21,13 @@ const CreateRecordModal = ({
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [currentStep, setCurrentStep] = useState<number>(0); // 0단계부터 시작
+  const [isVisible, setIsVisible] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+
+  const showToast = (msg: string) => {
+    setIsVisible(true);
+    setToastMessage(msg);
+  };
 
   useEffect(() => {
     setCurrentStep(0);
@@ -38,7 +46,7 @@ const CreateRecordModal = ({
 
     group: 'group', // 그룹명
     member: 'member', // 멤버명
-    temperature: 100,
+    temperature: -1,
   };
 
   const [visitRecord, setVisitRecord] = useState(initialVisitRecord);
@@ -48,6 +56,7 @@ const CreateRecordModal = ({
     group,
     member,
     place: { type },
+    temperature,
   } = visitRecord; //비구조화 할당
 
   const handleMoveToStep = (step: number) => {
@@ -62,8 +71,6 @@ const CreateRecordModal = ({
   };
   const handleChangeCategory = (category: string) => {
     const updatedPlace = { ...initialVisitRecord.place };
-
-    // 새로운 type 값을 설정합니다.
     updatedPlace.type = category;
     setVisitRecord({ ...visitRecord, place: updatedPlace });
   };
@@ -77,8 +84,18 @@ const CreateRecordModal = ({
     setVisitRecord({ ...visitRecord, group, member });
   };
 
+  const handleChangeTemperature = (temperature: number) => {
+    setVisitRecord({ ...visitRecord, temperature: temperature });
+  };
+
   const endRecord = async () => {
+    if (purpose === 1 && temperature === -1) {
+      // 기록 남기기 선택했으면 온도 필수 입력
+      return;
+    }
     //TODO API 요청
+
+    console.log('완성된 기록:', visitRecord);
     const response = await createRecord(visitRecord);
     console.log(response);
     //  if(response.status==200){
@@ -115,7 +132,13 @@ const CreateRecordModal = ({
         <MainBtn
           type={1}
           text="다음"
-          onClick={() => handleMoveToStep(currentStep + 1)}
+          onClick={() => {
+            if (place.name || place.type) {
+              handleMoveToStep(currentStep + 1);
+            } else {
+              showToast('장소를 선택해주세요!');
+            }
+          }}
         />
       </Row>
     </Box>,
@@ -137,13 +160,23 @@ const CreateRecordModal = ({
           <MainBtn
             type={1}
             text="다음"
-            onClick={() => handleMoveToStep(currentStep + 1)}
+            onClick={() => {
+              if (group && member) {
+                handleMoveToStep(currentStep + 1);
+              } else {
+                showToast('멤버를 선택해주세요!');
+              }
+            }}
           />
         )}
       </Row>
     </Box>,
     <Box key="step4">
       <Title>{place.name} 에 대한 온도를 등록해주세요!</Title>
+      <SliderUI
+        temperature={temperature}
+        setTemperature={handleChangeTemperature}
+      />
       <MainBtn type={1} text="등록하기" onClick={endRecord} />
     </Box>,
     <Box key="step5">
@@ -156,6 +189,13 @@ const CreateRecordModal = ({
   return (
     <BottomSheet isOpen={isOpen} setOpen={setOpen} step={currentStep}>
       <ModalContent>{steps[currentStep]}</ModalContent>
+      {isVisible && (
+        <ToastMessage
+          text={toastMessage}
+          isVisible={isVisible}
+          setIsVisible={setIsVisible}
+        />
+      )}
     </BottomSheet>
   );
 };

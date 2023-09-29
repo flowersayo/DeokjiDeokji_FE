@@ -36,6 +36,7 @@ const MessageBox = styled.div`
 
   z-index: 10;
   transform: translate(-50%, -50%);
+  align-self: center;
   display: flex;
   flex-direction: row;
   display: inline-flex;
@@ -47,6 +48,19 @@ const MessageBox = styled.div`
   border-radius: 20px;
   background: #fff;
   box-shadow: 0px 8px 30px 0px rgba(0, 0, 0, 0.2);
+
+  animation: slideIn 1s ease;
+
+  @keyframes slideIn {
+    0% {
+      transform: translate(-50%, -100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+  }
 `;
 
 const Img = styled.img`

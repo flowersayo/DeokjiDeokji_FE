@@ -19,12 +19,14 @@ const HomePage = () => {
   const [isCreateRecordModalOpen, setIsCreateRecordModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [focused, setFocused] = useState<IRecord | null>(null);
-  const [selectedLocations, setSelectedLocations] = useState<IPlace[]>([]); // 선택장소
+
+  const [selectedLocation, setSelectedLocation] = useState<IPlace>(); // 선택장소
   const [selectedGroup, setSelectedGroup] = useState<
     'BTS' | 'newJeans' | 'BlackPink' | 'seventeen' | null
   >(null);
 
   useEffect(() => {
+    /*
     if (!selectedGroup) {
       GET('/api/v1/place')
         .then((res) => {
@@ -42,6 +44,7 @@ const HomePage = () => {
           alert('데이터를 불러오는데에 실패했습니다.');
         });
     }
+    */
   }, [selectedGroup]);
 
   const handleCreateBtnClick = () => {
