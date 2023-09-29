@@ -25,10 +25,12 @@ const FeedPage = () => {
       )}
 
       <Section>
-        <Title>
-          덕지순례 오늘 고민,
-          <br /> 같이 해결해볼까요?
-        </Title>
+        <Left>
+          <Title>
+            덕지순례 오늘 고민,
+            <br /> 같이 해결해볼까요?
+          </Title>
+        </Left>
         <Recommmend showToast={showToast} />
       </Section>
       <Section>
@@ -40,7 +42,6 @@ const FeedPage = () => {
             <LocationInfo
               key={`${data.place.name}-${data.place.id}`}
               focused={data}
-              position="relative"
             />
           );
         })}
@@ -54,11 +55,14 @@ const FeedPage = () => {
 const FeedPageLayout = styled.div`
   width: 100%;
   height: 100%;
+  background: var(--mono-gray-01, #f4f4f4);
+
   position: relative;
   white-space: pre-line;
   padding: 22px;
   padding-top: 50px;
   overflow-x: hidden;
+  margin-bottom: 50px;
 `;
 
 const Section = styled.div`
@@ -67,12 +71,11 @@ const Section = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 22px 0px;
-  gap: 10px;
+  gap: 16px;
 `;
 
 const Left = styled.div`
   width: 100%;
-  padding-left: 20px;
 `;
 
 const Img = styled.img`
@@ -80,6 +83,6 @@ const Img = styled.img`
   position: absolute;
   top: 50px;
   right: 0;
-  z-index: -1;
+  z-index: 1;
 `;
 export default FeedPage;

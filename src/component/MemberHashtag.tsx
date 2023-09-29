@@ -15,8 +15,6 @@ export const MemberHashtag = ({ group, name }: any) => {
 };
 
 const HashtagContainer = styled.div`
-  margin-top: 60px;
-  margin-right: 10px;
   padding: 5px 15px 5px 10px;
   height: 30px;
   border-radius: 100px;
