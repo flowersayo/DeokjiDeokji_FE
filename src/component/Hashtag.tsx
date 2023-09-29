@@ -1,12 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Body2_3 } from 'styles/font';
 import { theme } from 'styles/theme';
 
-interface IHashtag {
-  type: string;
-}
-
+import { useTheme } from 'styled-components';
 interface hashtags {
   [key: string]: any;
 }
@@ -23,18 +20,34 @@ const HashtagTexts: hashtags = {
   BirthCafe: '생일 카페',
 };
 
-export const Hashtag = ({ type }: any) => {
+export const Hashtag = ({ type, disabled, onClick }: any) => {
+  const theme = useTheme();
   return (
-    <HashtagContainer color={`${HashtagColors[type]}`}>
-      <Body2_3>#{`${HashtagTexts[type]}`}</Body2_3>
+    <HashtagContainer
+      color={`${HashtagColors[type]}`}
+      disabled={disabled}
+      onClick={onClick}
+    >
+      <Body2_3 color={disabled ? theme.colors.gray02 : theme.colors.black}>
+        #{`${HashtagTexts[type]}`}
+      </Body2_3>
     </HashtagContainer>
   );
 };
 
-const HashtagContainer = styled.div`
-  margin-top: 60px;
+const HashtagContainer = styled.div<{ disabled: boolean }>`
   padding: 5px 15px 5px 10px;
   height: 30px;
   border-radius: 100px;
   background-color: ${({ color }) => (color ? color : '')};
+  border: 1px solid var(--mono-black, #171717);
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      cursor: pointer;
+      border-radius: 100px;
+      border: 1px solid var(--mono-gray-02, #dcdcdc);
+      background: var(--mono-gray-01, #f4f4f4);
+    `}
 `;

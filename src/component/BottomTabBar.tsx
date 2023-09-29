@@ -74,6 +74,7 @@ const BottomTabBar = () => {
 };
 
 const NavBox = styled.div`
+  max-width: 576px;
   width: 100%;
   height: 80px;
   display: flex;
@@ -84,13 +85,15 @@ const NavBox = styled.div`
   bottom: 0px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  z-index: 2;
+  z-index: 10;
   padding-bottom: 21px;
   /* navigatonbar */
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; /* 내부 패딩과 경계를 포함한 너비 계산 */
 `;
 const Tab = styled.div`
   display: flex;
+  flex-basis: 42px;
   flex-direction: column;
   justify-content: center;
   align-items: center;

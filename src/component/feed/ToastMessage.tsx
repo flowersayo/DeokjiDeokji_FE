@@ -34,6 +34,7 @@ const MessageBox = styled.div`
   top: 10%;
   left: 50%;
 
+  z-index: 10;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: row;
@@ -41,6 +42,7 @@ const MessageBox = styled.div`
   padding: 20px 22px;
   align-items: center;
   gap: 5px;
+  white-space: nowrap;
 
   border-radius: 20px;
   background: #fff;
