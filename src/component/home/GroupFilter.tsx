@@ -5,9 +5,9 @@ const GroupFilter = ({
   selectedGroup,
   setSelectedGroup,
 }: {
-  selectedGroup: 'BTS' | 'newJeans' | 'BlackPink' | 'seventeen' | null;
+  selectedGroup: 'BTS' | '뉴진스' | '블랙핑크' | '세븐틴' | null;
   setSelectedGroup: React.Dispatch<
-    React.SetStateAction<'BTS' | 'newJeans' | 'BlackPink' | 'seventeen' | null>
+    React.SetStateAction<'BTS' | '뉴진스' | '블랙핑크' | '세븐틴' | null>
   >;
 }) => {
   return (
@@ -19,20 +19,20 @@ const GroupFilter = ({
         BTS
       </GroupFilterBtn>
       <GroupFilterBtn
-        $selected={selectedGroup === 'newJeans'}
-        onClick={() => setSelectedGroup('newJeans')}
+        $selected={selectedGroup === '뉴진스'}
+        onClick={() => setSelectedGroup('뉴진스')}
       >
         뉴진스
       </GroupFilterBtn>
       <GroupFilterBtn
-        $selected={selectedGroup === 'BlackPink'}
-        onClick={() => setSelectedGroup('BlackPink')}
+        $selected={selectedGroup === '블랙핑크'}
+        onClick={() => setSelectedGroup('블랙핑크')}
       >
         블랙핑크
       </GroupFilterBtn>
       <GroupFilterBtn
-        $selected={selectedGroup === 'seventeen'}
-        onClick={() => setSelectedGroup('seventeen')}
+        $selected={selectedGroup === '세븐틴'}
+        onClick={() => setSelectedGroup('세븐틴')}
       >
         세븐틴
       </GroupFilterBtn>

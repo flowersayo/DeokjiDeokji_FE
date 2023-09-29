@@ -6,7 +6,7 @@ import DuckjiHeadSrc from 'assets/images/duckji-head.svg';
 import ToastMessage from 'component/feed/ToastMessage';
 import { LocationInfo } from 'component/LocationInfo';
 import { places } from 'db/places';
-import { records } from 'db/records';
+import { RECORD_DUMMY_DATA } from 'db/records';
 
 const FeedPage = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -37,7 +37,7 @@ const FeedPage = () => {
         <Left>
           <Title>덕지가 추천하는 이번주 덕지 순례!</Title>
         </Left>
-        {records.map((data) => {
+        {RECORD_DUMMY_DATA.map((data) => {
           return (
             <LocationInfo
               key={`${data.place.name}-${data.place.id}`}

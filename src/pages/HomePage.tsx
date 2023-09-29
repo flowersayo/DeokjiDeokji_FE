@@ -6,8 +6,9 @@ import CreateRecordBtn from 'component/home/CreateRecordBtn';
 import { IPlace, IRecord } from 'utils/interface';
 import { LocationInfo } from 'component/LocationInfo';
 import { GET } from 'utils/axios';
-import { records } from 'db/records';
+import { RECORD_DUMMY_DATA } from 'db/records';
 import GroupFilter from 'component/home/GroupFilter';
+import { getPlaces } from 'api/place';
 
 declare global {
   interface Window {
@@ -17,38 +18,28 @@ declare global {
 
 const HomePage = () => {
   const [isCreateRecordModalOpen, setIsCreateRecordModalOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   const [focused, setFocused] = useState<IRecord | null>(null);
 
+  const [records, setRecords] = useState<IRecord[]>(RECORD_DUMMY_DATA);
   const [selectedLocation, setSelectedLocation] = useState<IPlace>(); // 선택장소
   const [selectedGroup, setSelectedGroup] = useState<
-    'BTS' | 'newJeans' | 'BlackPink' | 'seventeen' | null
+    'BTS' | '뉴진스' | '블랙핑크' | '세븐틴' | null
   >(null);
 
   useEffect(() => {
-    /*
-    if (!selectedGroup) {
-      GET('/api/v1/place')
-        .then((res) => {
-          setSelectedLocations(res.content);
-        })
-        .catch(() => {
-          alert('데이터를 불러오는데에 실패했습니다.');
-        });
-    } else {
-      GET(`/api/v1/idol/group/${selectedGroup}`)
-        .then((res) => {
-          setSelectedLocations(res.content);
-        })
-        .catch(() => {
-          alert('데이터를 불러오는데에 실패했습니다.');
-        });
-    }
-    */
-  }, [selectedGroup]);
+    // const result = getPlaces();
+    // setRecords(result.data);
+  }, []);
 
   const handleCreateBtnClick = () => {
     setIsCreateRecordModalOpen(true);
+  };
+
+  const initState = () => {
+    // 상태 초기화
+    setSelectedGroup(null);
+    setFocused(null);
   };
 
   return (
@@ -62,31 +53,35 @@ const HomePage = () => {
         setSelectedGroup={setSelectedGroup}
       />
       <Map
-        center={{ lat: 37.530025, lng: 126.964773 }}
+        center={{ lat: 37.525121, lng: 126.96339 }}
         style={{ width: '100%', height: '100%' }}
+        onClick={initState}
       >
-        {records?.map((loc) => {
-          const latlng = {
-            lat: loc.place.latitude,
-            lng: loc.place.longitude,
-          };
-          return (
-            <MapMarker
-              key={`${loc.place.name}-${latlng}`}
-              position={latlng}
-              image={{
-                src: `/assets/svg/${loc.place.type}.svg`,
-                size: { width: 35, height: 35 },
-              }}
-              title={loc.place.name}
-              onClick={() => {
-                setIsOpen(true);
-                setFocused(loc);
-              }}
-            />
-          );
-        })}
-        {isOpen && (
+        {records
+          ?.filter((record, idx) => {
+            return selectedGroup ? selectedGroup === record.group : true;
+          })
+          .map((loc) => {
+            const latlng = {
+              lat: loc.place.latitude,
+              lng: loc.place.longitude,
+            };
+            return (
+              <MapMarker
+                key={`${loc.place.name}-${latlng}`}
+                position={latlng}
+                image={{
+                  src: `/assets/svg/${loc.place.type}.svg`,
+                  size: { width: 35, height: 35 },
+                }}
+                title={loc.place.name}
+                onClick={() => {
+                  setFocused(loc);
+                }}
+              />
+            );
+          })}
+        {focused && (
           <LocationContainer>
             <LocationInfo focused={focused} shadow />
           </LocationContainer>
