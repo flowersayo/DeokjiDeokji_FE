@@ -9,33 +9,33 @@ import { Body1_1 } from 'styles/font';
 import { IGroup } from 'utils/interface';
 
 const DropDownList = ({
-  selectedMember,
-  setSelectedMember,
+  selected,
+  setSelected,
 }: {
-  selectedMember: any;
-  setSelectedMember: any;
+  selected: any;
+  setSelected: any;
 }) => {
   /*
   {group:"BTS"
-    name : "진"}
+    member : "진"}
   */
 
   const groups = [
     {
-      name: 'BTS',
-      members: ['RM', '진', '슈가', '제이홉', '지민', '뷔', '정국'],
+      group_name: 'BTS',
+      group_members: ['RM', '진', '슈가', '제이홉', '지민', '뷔', '정국'],
     },
     {
-      name: '뉴진스',
-      members: ['해린', '민지', '다니엘', '하니'],
+      group_name: '뉴진스',
+      group_members: ['해린', '민지', '다니엘', '하니'],
     },
     {
-      name: '블랙핑크',
-      members: ['제니', '리사', '지수', '로제'],
+      group_name: '블랙핑크',
+      group_members: ['제니', '리사', '지수', '로제'],
     },
     {
-      name: '세븐틴',
-      members: [
+      group_name: '세븐틴',
+      group_members: [
         '민규',
         '정한',
         '원우',
@@ -50,55 +50,94 @@ const DropDownList = ({
     },
   ];
 
+  const initialOpenState = new Array(groups.length).fill(false);
+
+  const [currentOpenTab, setCurrentOpenTab] = useState<number | null>(null);
+
   return (
     <List>
-      {groups.map((group, idx) => {
+      {groups.map((groupInfo, idx) => {
         return (
           <DropDown
             key={idx}
-            group={group}
-            selectedMember={selectedMember}
-            setSelectedMember={setSelectedMember}
+            idx={idx}
+            groupInfo={groupInfo}
+            setSelected={setSelected}
+            selected={selected}
+            currentOpenTab={currentOpenTab}
+            setCurrentOpenTab={setCurrentOpenTab}
           />
         );
       })}
     </List>
   );
 };
-const DropDown = ({
-  group,
-  selectedMember,
-  setSelectedMember,
-}: {
-  group: IGroup;
-  selectedMember: any;
-  setSelectedMember: any;
-}) => {
-  const { name: group_name, members } = group;
-  const [isOpen, setIsOpen] = useState(false);
 
+const DropDown = ({
+  idx,
+  groupInfo,
+  selected,
+  setSelected,
+  currentOpenTab,
+  setCurrentOpenTab,
+}: {
+  idx: number;
+  groupInfo: IGroup;
+  selected: any;
+  setSelected: any;
+  currentOpenTab: number | null;
+  setCurrentOpenTab: React.Dispatch<React.SetStateAction<number | null>>;
+}) => {
+  const { group, member } = selected;
+  const { group_name, group_members } = groupInfo;
+
+  const isOpen = idx == currentOpenTab;
+
+  console.log(isOpen);
   return (
     <Col>
       <Row key={group_name}>
-        <Body1_1>{group_name}</Body1_1>
         {isOpen ? (
-          <img src={UpIconSrc} onClick={() => setIsOpen(false)} />
+          <Body1_1>{group_name}</Body1_1>
         ) : (
-          <img src={DownIconSrc} onClick={() => setIsOpen(true)} />
+          <Body1_1 color="#DCDCDC"> {group_name}</Body1_1>
+        )}
+
+        {isOpen ? (
+          <img
+            src={UpIconSrc}
+            onClick={() => {
+              if (isOpen) {
+                setCurrentOpenTab(null);
+                //setIsOpen(false);
+              }
+            }}
+          />
+        ) : (
+          <img
+            src={DownIconSrc}
+            onClick={() => {
+              setCurrentOpenTab(idx); // 새로운 탭 열기
+              setSelected({ group: '', member: '' });
+
+              //setIsOpen(true);
+            }}
+          />
         )}
       </Row>
       {isOpen && (
         <Col>
-          {members.map((name) => (
+          {group_members.map((name: any) => (
             <Row key={name}>
               <Body1_1>{name}</Body1_1>
-              {selectedMember === name ? (
+
+              {member === name ? (
                 <img src={CheckIconSrc} />
               ) : (
                 <img
                   src={UnCheckIconSrc}
                   onClick={() => {
-                    setSelectedMember({
+                    setSelected({
                       group: group_name,
                       member: name,
                     });

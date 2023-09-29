@@ -6,8 +6,8 @@ export interface IUser {
   birthday: string;
 }
 export interface IGroup {
-  name: string;
-  members: string[];
+  group_name: string;
+  group_members: string[];
 }
 
 export interface IPlace {
@@ -27,7 +27,6 @@ export interface IRecord {
   member: string;
   temperature?: number;
 }
-
 
 export interface IPeoples {
   group: string;

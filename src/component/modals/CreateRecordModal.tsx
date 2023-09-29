@@ -9,6 +9,8 @@ import { IPlace, IRecord } from 'utils/interface';
 import DropDownList from 'component/home/DropDownList';
 import DuckJiSrc from 'assets/images/duckji.svg';
 import { createRecord } from 'api/record';
+import CategorySelector from 'component/home/CategorySelector';
+import ToastMessage from 'component/feed/ToastMessage';
 
 const CreateRecordModal = ({
   isOpen,
@@ -40,7 +42,13 @@ const CreateRecordModal = ({
   };
 
   const [visitRecord, setVisitRecord] = useState(initialVisitRecord);
-  const { purpose, place, group, member } = visitRecord; //비구조화 할당
+  const {
+    purpose,
+    place,
+    group,
+    member,
+    place: { type },
+  } = visitRecord; //비구조화 할당
 
   const handleMoveToStep = (step: number) => {
     setCurrentStep(step);
@@ -51,6 +59,13 @@ const CreateRecordModal = ({
   };
   const handleChangePlace = (place: IPlace) => {
     setVisitRecord({ ...visitRecord, place: place });
+  };
+  const handleChangeCategory = (category: string) => {
+    const updatedPlace = { ...initialVisitRecord.place };
+
+    // 새로운 type 값을 설정합니다.
+    updatedPlace.type = category;
+    setVisitRecord({ ...visitRecord, place: updatedPlace });
   };
   const handleChangeMember = ({
     group,
@@ -66,13 +81,13 @@ const CreateRecordModal = ({
     //TODO API 요청
     const response = await createRecord(visitRecord);
     console.log(response);
+    //  if(response.status==200){
     handleMoveToStep(4);
     setVisitRecord(initialVisitRecord);
+    // }
   };
-  // step
-  // 0 : 목적 선택
-  // 1: 장소 선택
-  // 2: 멤버 선택
+
+  console.log(visitRecord);
   const steps = [
     <Box key="step1">
       <Title>어떤 기록을 남기시나요?</Title>
@@ -85,7 +100,12 @@ const CreateRecordModal = ({
     </Box>,
     <Box key="step2">
       <Title>장소를 검색해보세요!</Title>
+      <CategorySelector
+        selectedCategory={type}
+        setSelectedCategory={handleChangeCategory}
+      />
       <SearchPlace place={place} setPlace={handleChangePlace} />
+
       <Row>
         <MainBtn
           type={0}
@@ -102,8 +122,8 @@ const CreateRecordModal = ({
     <Box key="step3">
       <Title>기록과 관련된 멤버를 선택해주세요!</Title>
       <DropDownList
-        setSelectedMember={handleChangeMember}
-        selectedMember={member}
+        selected={{ group: group, member: member }}
+        setSelected={handleChangeMember}
       />
       <Row>
         <MainBtn
@@ -146,11 +166,6 @@ const ModalContent = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-
-  padding-top: 12px;
-  padding-left: 24px;
-  padding-right: 24px;
-  padding-bottom: 28px;
 `;
 
 const Box = styled.div`
