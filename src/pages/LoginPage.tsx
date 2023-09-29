@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Body2_1 } from 'styles/font';
 import { AUTH_URL } from 'utils/constants';
 import styled from 'styled-components';
@@ -7,8 +8,11 @@ import kakaoLoginButtonImg from 'assets/buttons/kakao_login_medium_wide.png';
 import loginCharacterImg from 'assets/character/login_character.svg';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const clickLoginButton = () => {
-    window.location.href = AUTH_URL;
+    // window.location.href = AUTH_URL;
+
+    navigate('/home', { replace: true });
   };
 
   return (
